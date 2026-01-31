@@ -1,21 +1,16 @@
 @import "tailwindcss";
 
-@font-face {
-  font-family: 'Plus Jakarta Sans';
-  src: url('/fonts/PlusJakartaSans-Variable.ttf') format('truetype');
-  font-weight: 100 900;
-  font-display: swap;
-  font-style: normal;
-}
-
 @theme {
-  --color-easyjur-red: #E11D48;
-  --color-easyjur-blue-dark: #1E3A8A;
-  --color-easyjur-blue-light: #2563EB;
-  --color-easyjur-gray-50: #F9FAFB;
-  --font-sans: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui;
+  --color-easy-red: #E5293F;
+  --color-easy-gray-primary: #80929B;
+  --color-easy-gray-secondary: #ACBAC2;
+  --color-easy-black: #000;
+  --color-easy-white: #FFF;
+  --color-easy-green: #61CE70;
+  --background-image-easy-gradient: linear-gradient(180deg, #F5F5F5 0%, #D9D9D9 100%);
 }
 
 body {
-  overflow-x: hidden;
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
 }

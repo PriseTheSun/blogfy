@@ -1,9 +1,26 @@
 import type { Metadata, Viewport } from "next";
+import localFont from "next/font/local"; // Importação necessária para fontes locais
 import "./globals.css";
 
-// Configuração de Viewport para performance mobile
+const plusJakartaSans = localFont({
+  src: [
+    {
+      path: "./fonts/PlusJakartaSans-Regular.ttf",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "./fonts/PlusJakartaSans-Italic.ttf",
+      weight: "400",
+      style: "italic",
+    },
+  ],
+  variable: "--font-plus-jakarta",
+  display: 'swap',
+});
+
 export const viewport: Viewport = {
-  themeColor: "#E11D48", // Cor da EasyJur para a barra do navegador mobile
+  themeColor: "#E11D48",
   width: "device-width",
   initialScale: 1,
 };
@@ -23,11 +40,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pt-br" suppressHydrationWarning>
-      <body
-        className="font-sans antialiased min-h-screen bg-white text-zinc-900"
-        suppressHydrationWarning
-      >
+    <html lang="pt-br" className={plusJakartaSans.variable} suppressHydrationWarning>
+      <body className="font-sans antialiased min-h-screen bg-white text-zinc-900">
         {children}
       </body>
     </html>
