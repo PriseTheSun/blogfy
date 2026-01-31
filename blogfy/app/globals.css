@@ -1,0 +1,21 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  src: url('/fonts/PlusJakartaSans-Variable.ttf') format('truetype');
+  font-weight: 100 900;
+  font-display: swap;
+  font-style: normal;
+}
+
+@theme {
+  --color-easyjur-red: #E11D48;
+  --color-easyjur-blue-dark: #1E3A8A;
+  --color-easyjur-blue-light: #2563EB;
+  --color-easyjur-gray-50: #F9FAFB;
+  --font-sans: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
+}
+
+body {
+  overflow-x: hidden;
+}
