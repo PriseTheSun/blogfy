@@ -2,7 +2,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ChevronDown, Menu, X, ExternalLink, RefreshCw, Calendar, BookOpen, FileText, Book, File, Gavel, Clipboard } from 'lucide-react';
+import { ChevronDown, Menu, X, ExternalLink, RefreshCw, Calendar, BookOpen, FileText, Book, File, Gavel, Clipboard, DownloadCloud } from 'lucide-react';
 
 export default function Navbar() {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -34,9 +34,10 @@ export default function Navbar() {
 
     // Materiais em destaque (sempre exibir os 3 mais recentes - substitua pela fonte real quando disponível)
     const featuredMaterials = [
-        { id: 1, type: 'E-book', title: 'Guia Prático de Petições', meta: 'Gratuito • Baixe agora', href: '#' },
-        { id: 2, type: 'Curso', title: 'Curso Intensivo: Prática Cível', meta: '50% off para assinantes', href: '#' },
-        { id: 3, type: 'Planilha', title: 'Planilha de Cálculos Trabalhistas', meta: 'Modelo editável • Baixe já', href: '#' },
+        { id: 1, type: 'E-book', title: 'Guia Prático de Petições', meta: 'Gratuito • Baixe agora', href: '#', downloadHref: '#', isNew: true },
+        { id: 2, type: 'Curso', title: 'Curso Intensivo: Prática Cível', meta: '50% off para assinantes', href: '#', downloadHref: '#', isNew: false },
+        { id: 3, type: 'Planilha', title: 'Planilha de Cálculos Trabalhistas', meta: 'Modelo editável • Baixe já', href: '#', downloadHref: '#', isNew: true },
+        { id: 4, type: 'E-book', title: 'Checklist para Audiências', meta: 'Novo • Prático para consulta', href: '#', downloadHref: '#', isNew: true },
     ];
 
     const loadNews = useCallback(async () => {
@@ -327,28 +328,41 @@ export default function Navbar() {
 
                                     {/* Highlight panel */}
                                     <div className="col-span-4 h-full">
-                                        <div className="rounded-xl p-6 bg-easy-red/5 border border-easy-red/10 h-full flex flex-col justify-between">
+                                        <div className="rounded-xl p-6 bg-easy-gray-secondary/5 border border-easy-gray-secondary/20 h-full flex flex-col justify-between">
                                             <div>
                                                 <h5 className="font-bold text-sm text-easy-black">Materiais em destaque</h5>
                                                 <p className="text-sm text-easy-gray-primary mt-3">Acesse cursos, e-books e guias selecionados pelos nossos especialistas. Conteúdo atualizado semanalmente.</p>
 
                                                 <div className="mt-4 grid grid-cols-1 gap-3">
                                                     {featuredMaterials.map((m) => (
-                                                        <Link key={m.id} href={m.href} className="flex items-center gap-3 p-3 bg-easy-white rounded-md border border-easy-gray-secondary/20 hover:shadow-sm transition-shadow">
-                                                            <div className="w-12 h-8 bg-easy-gray-secondary/10 rounded-md flex items-center justify-center text-xs text-easy-gray-primary">{m.type}</div>
-                                                            <div className="text-xs">
-                                                                <div className="font-medium text-easy-black">{m.title}</div>
-                                                                <div className="text-xs text-easy-gray-primary">{m.meta}</div>
+                                                        <div key={m.id} className="flex items-center justify-between p-3 bg-easy-white rounded-md border border-easy-gray-secondary/20 hover:shadow-sm transition-shadow">
+                                                            <div className="flex items-center gap-3">
+                                                                <div className="w-12 h-8 bg-easy-gray-secondary/10 rounded-md flex items-center justify-center text-xs text-easy-gray-primary">{m.type}</div>
+                                                                <div className="text-xs">
+                                                                    <div className="font-medium text-easy-black">
+                                                                        {m.title}
+                                                                    </div>
+                                                                    <div className="text-xs text-easy-gray-primary">{m.meta}</div>
+                                                                </div>
                                                             </div>
-                                                        </Link>
+
+                                                            <div className="flex flex-col items-center gap-2">
+                                                                {m.isNew && (
+                                                                    <span className="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-easy-red/10 text-easy-red uppercase" aria-hidden>
+                                                                        Novo
+                                                                    </span>
+                                                                )}
+
+                                                                <Link href={m.downloadHref} className="p-2 rounded-md bg-easy-gray-secondary/5 hover:bg-easy-gray-secondary/10 text-easy-gray-primary" aria-label={`Ir para página de download de ${m.title}`}>
+                                                                    <DownloadCloud size={16} />
+                                                                </Link>
+                                                            </div>
+                                                        </div>
                                                     ))}
                                                 </div>
                                             </div>
 
-                                            <div className="mt-4 flex gap-2">
-                                                <Link href="#" className="px-3 py-2 bg-easy-red text-white text-xs font-bold rounded-md">Ver Materiais</Link>
-                                                <Link href="#" className="px-3 py-2 border border-easy-gray-secondary/20 rounded-md text-xs">Ajuda</Link>
-                                            </div>
+
                                         </div>
                                     </div>
 
