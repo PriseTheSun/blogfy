@@ -2,7 +2,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ChevronDown, Menu, X, ExternalLink, RefreshCw, Calendar, BookOpen, FileText, Book, File, Gavel, Clipboard, DownloadCloud } from 'lucide-react';
+import { ChevronDown, Menu, X, ExternalLink, RefreshCw, Calendar, BookOpen, FileText, Book, File, Gavel, Clipboard, DownloadCloud, Play, ChevronLeft, ChevronRight } from 'lucide-react';
 
 export default function Navbar() {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -52,6 +52,32 @@ export default function Navbar() {
             setLoading(false);
         }
     }, []);
+
+    // Depoimentos (YouTube) - slider de vídeos no mega menu "A EasyJur"
+    const videoSlides = [
+        { id: 'HqKgEEFnEYg', title: 'Depoimento 1', url: 'https://www.youtube.com/watch?v=HqKgEEFnEYg' },
+        { id: 'VEU0fPmruDQ', title: 'Depoimento 2', url: 'https://www.youtube.com/watch?v=VEU0fPmruDQ' },
+        { id: '8jejtfYgQz8', title: 'Depoimento 3', url: 'https://www.youtube.com/watch?v=8jejtfYgQz8' },
+    ];
+
+    const [videoIndex, setVideoIndex] = useState(0);
+    const [videoPlaying, setVideoPlaying] = useState<number | null>(null);
+    const [videoPaused, setVideoPaused] = useState(false);
+
+    // pausa o slider de noticias quando um vídeo estiver sendo reproduzido
+    useEffect(() => {
+        setIsPaused(Boolean(videoPlaying));
+    }, [videoPlaying]);
+
+    // autoplay do slider de vídeos (pausa em hover ou quando um vídeo estiver em reprodução)
+    useEffect(() => {
+        if (videoSlides.length === 0 || videoPaused || videoPlaying !== null) return;
+        const iv = setInterval(() => {
+            setVideoIndex((prev) => (prev + 1) % videoSlides.length);
+        }, 8000); // increased interval
+        return () => clearInterval(iv);
+    }, [videoSlides.length, videoPaused, videoPlaying]);
+
 
 
     useEffect(() => {
@@ -371,7 +397,7 @@ export default function Navbar() {
                         </div>
 
 
-                        <div className="group h-full flex items-center">
+                        <div className="group h-full flex items-center" onMouseLeave={() => { setVideoPlaying(null); setVideoPaused(false); }}>
                             <div className={navLinkStyle}>
                                 A EasyJur <ChevronDown size={14} className="group-hover:rotate-180 transition-transform" />
                             </div>
@@ -386,8 +412,92 @@ export default function Navbar() {
                                     </div>
                                     <div className="col-span-4">
                                         <h4 className="font-bold text-sm mb-4 text-easy-gray-primary">O que falam de nós</h4>
-                                        <div className="aspect-video bg-easy-gray-secondary/10 rounded-xl flex items-center justify-center text-xs text-easy-gray-primary border border-easy-gray-secondary/20">
-                                            [Slider Depoimentos Vídeo]
+
+                                        <div
+                                            className="relative w-full rounded-xl border border-easy-gray-secondary/20 bg-white overflow-hidden"
+                                            onMouseEnter={() => setVideoPaused(true)}
+                                            onMouseLeave={() => setVideoPaused(false)}
+                                        >
+
+                                            <div className="relative aspect-video bg-easy-gray-secondary/10 flex items-center justify-center">
+                                                {videoSlides.map((v, i) => (
+                                                    <div
+                                                        key={v.id}
+                                                        className={`absolute inset-0 transition-all duration-500 ease-in-out ${i === videoIndex ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 pointer-events-none'}`}
+                                                        aria-hidden={i === videoIndex ? 'false' : 'true'}
+                                                    >
+                                                        {videoPlaying === i ? (
+                                                            <div className="w-full h-full relative">
+                                                                <iframe
+                                                                    title={v.title}
+                                                                    className="w-full h-full"
+                                                                    src={`https://www.youtube.com/embed/${v.id}?autoplay=1&rel=0`}
+                                                                    allow="autoplay; encrypted-media; picture-in-picture"
+                                                                    frameBorder="0"
+                                                                    allowFullScreen
+                                                                />
+
+                                                                <button
+                                                                    onClick={() => { setVideoPlaying(null); setIsPaused(false); }}
+                                                                    aria-label="Fechar vídeo"
+                                                                    className="absolute top-2 right-2 bg-white/90 hover:bg-white rounded-full p-1 shadow"
+                                                                >
+                                                                    <X size={16} />
+                                                                </button>
+                                                            </div>
+                                                        ) : (
+
+                                                            <div className="w-full h-full relative">
+                                                                <img
+                                                                    src={`https://img.youtube.com/vi/${v.id}/hqdefault.jpg`}
+                                                                    alt={v.title}
+                                                                    className="w-full h-full object-cover"
+                                                                />
+
+                                                                <button
+                                                                    onClick={() => { setVideoPlaying(i); setIsPaused(true); }}
+                                                                    aria-label={`Tocar vídeo: ${v.title}`}
+                                                                    className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/60 text-white rounded-full p-3 flex items-center justify-center"
+                                                                >
+                                                                    <Play size={28} />
+                                                                </button>
+                                                            </div>
+                                                        )}
+                                                    </div>
+                                                ))}
+
+                                                <div className="absolute right-3 bottom-[45px] flex items-center gap-2 z-20">
+                                                    <button
+                                                        onClick={() => {
+                                                            if (videoPlaying !== null) {
+                                                                setVideoPlaying(null);
+                                                                setIsPaused(false);
+                                                                setVideoPaused(false);
+                                                            }
+                                                            setVideoIndex((prev) => (prev - 1 + videoSlides.length) % videoSlides.length);
+                                                        }}
+                                                        className="p-1.5 bg-white/75 hover:bg-white opacity-75 hover:opacity-100 rounded-full shadow-sm text-easy-gray-primary border border-easy-gray-secondary/10 transition-opacity"
+                                                        aria-label="Anterior depoimento"
+                                                    >
+                                                        <ChevronLeft size={12} />
+                                                    </button>
+
+                                                    <button
+                                                        onClick={() => {
+                                                            if (videoPlaying !== null) {
+                                                                setVideoPlaying(null);
+                                                                setIsPaused(false);
+                                                                setVideoPaused(false);
+                                                            }
+                                                            setVideoIndex((prev) => (prev + 1) % videoSlides.length);
+                                                        }}
+                                                        className="p-1.5 bg-white/75 hover:bg-white opacity-75 hover:opacity-100 rounded-full shadow-sm text-easy-gray-primary border border-easy-gray-secondary/10 transition-opacity"
+                                                        aria-label="Próximo depoimento"
+                                                    >
+                                                        <ChevronRight size={12} />
+                                                    </button>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                     <div className="col-span-4">
