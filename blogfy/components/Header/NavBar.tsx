@@ -73,7 +73,6 @@ export default function Navbar() {
         return () => clearInterval(iv);
     }, [videoSlides.length, videoPaused, videoPlaying]);
 
-    // Depoimentos escritos (slider na coluna "Depoimentos")
     const writtenTestimonials = [
         {
             id: 1,
@@ -117,7 +116,6 @@ export default function Navbar() {
         }, 7000);
         return () => clearInterval(tIv);
     }, [writtenTestimonials.length, testimonialPaused]);
-
 
 
     useEffect(() => {
