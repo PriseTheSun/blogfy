@@ -12,7 +12,6 @@ export default function Navbar() {
     const [isPaused, setIsPaused] = useState(false);
     const navLinkStyle = "flex items-center gap-1 font-semibold text-easy-black hover:text-easy-red transition-colors py-7 cursor-pointer text-sm";
 
-    // Ícones para cada categoria
     const categoryIcon = (cat: string) => {
         switch (cat) {
             case 'Cursos':
@@ -32,7 +31,6 @@ export default function Navbar() {
         }
     };
 
-    // Materiais em destaque (sempre exibir os 3 mais recentes - substitua pela fonte real quando disponível)
     const featuredMaterials = [
         { id: 1, type: 'E-book', title: 'Guia Prático de Petições', meta: 'Gratuito • Baixe agora', href: '#', downloadHref: '#', isNew: true },
         { id: 2, type: 'Curso', title: 'Curso Intensivo: Prática Cível', meta: '50% off para assinantes', href: '#', downloadHref: '#', isNew: false },
@@ -53,7 +51,6 @@ export default function Navbar() {
         }
     }, []);
 
-    // Depoimentos (YouTube) - slider de vídeos no mega menu "A EasyJur"
     const videoSlides = [
         { id: 'HqKgEEFnEYg', title: 'Depoimento 1', url: 'https://www.youtube.com/watch?v=HqKgEEFnEYg' },
         { id: 'VEU0fPmruDQ', title: 'Depoimento 2', url: 'https://www.youtube.com/watch?v=VEU0fPmruDQ' },
@@ -64,17 +61,15 @@ export default function Navbar() {
     const [videoPlaying, setVideoPlaying] = useState<number | null>(null);
     const [videoPaused, setVideoPaused] = useState(false);
 
-    // pausa o slider de noticias quando um vídeo estiver sendo reproduzido
     useEffect(() => {
         setIsPaused(Boolean(videoPlaying));
     }, [videoPlaying]);
 
-    // autoplay do slider de vídeos (pausa em hover ou quando um vídeo estiver em reprodução)
     useEffect(() => {
         if (videoSlides.length === 0 || videoPaused || videoPlaying !== null) return;
         const iv = setInterval(() => {
             setVideoIndex((prev) => (prev + 1) % videoSlides.length);
-        }, 8000); // increased interval
+        }, 8000);
         return () => clearInterval(iv);
     }, [videoSlides.length, videoPaused, videoPlaying]);
 
@@ -138,7 +133,7 @@ export default function Navbar() {
         return () => clearInterval(interval);
     }, [news, loading, isPaused]);
 
-    // Ensure currentIndex is valid when news length changes
+
     useEffect(() => {
         if (currentIndex >= news.length) setCurrentIndex(0);
     }, [news, currentIndex]);
@@ -293,7 +288,6 @@ export default function Navbar() {
                                                         className={`absolute inset-0 p-4 flex gap-4 items-stretch transition-all duration-500 ease-in-out ${index === currentIndex ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4 pointer-events-none"
                                                             }`}
                                                     >
-                                                        {/* Image / Placeholder */}
                                                         <div className="shrink-0 w-32 h-full rounded-lg overflow-hidden bg-easy-gray-secondary/10 border border-easy-gray-secondary/20">
                                                             {item.image ? (
                                                                 <img src={item.image} alt={item.title} className="w-full h-full object-cover" />
@@ -308,7 +302,6 @@ export default function Navbar() {
                                                             )}
                                                         </div>
 
-                                                        {/* Content */}
                                                         <div className="flex-1 flex flex-col justify-between">
                                                             <div>
                                                                 <span className="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-easy-red/10 text-easy-red uppercase">
@@ -370,7 +363,6 @@ export default function Navbar() {
                             <div className="absolute top-20 inset-x-4 md:inset-x-6 bg-easy-white border border-easy-gray-secondary/20 shadow-2xl rounded-b-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
                                 <div className="p-8 grid grid-cols-12 gap-6 items-stretch">
 
-                                    {/* Categories grid */}
                                     <div className="col-span-8 grid grid-cols-3 gap-4">
                                         {['Cursos', 'Guias Práticos', 'E-books', 'Planilhas', 'Jurisprudências', 'Modelos'].map((cat) => (
                                             <div key={cat} className="rounded-xl p-4 bg-easy-white border border-easy-gray-secondary/10 hover:shadow-md transition-shadow duration-200">
@@ -397,7 +389,6 @@ export default function Navbar() {
                                         ))}
                                     </div>
 
-                                    {/* Highlight panel */}
                                     <div className="col-span-4 h-full">
                                         <div className="rounded-xl p-6 bg-easy-gray-secondary/5 border border-easy-gray-secondary/20 h-full flex flex-col justify-between">
                                             <div>
@@ -569,7 +560,6 @@ export default function Navbar() {
                                                 ))}
                                             </div>
 
-                                            {/* Dots (bottom) */}
                                             <div className="mt-3 flex items-center justify-center gap-2">
                                                 {writtenTestimonials.map((_, i) => (
                                                     <button
