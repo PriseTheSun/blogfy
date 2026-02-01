@@ -152,434 +152,213 @@ export default function Navbar() {
 
     return (
         <>
-        <nav className={`transition-all duration-200 ${isSticky ? 'fixed top-0 left-0 right-0 w-full z-50 bg-easy-white/95 shadow-md border-b border-easy-gray-secondary/10' : 'sticky top-0 w-full z-40 bg-easy-white border-b border-easy-gray-secondary/20 shadow-sm'}`}>
+            <nav className={`transition-all duration-200 ${isSticky ? 'fixed top-0 left-0 right-0 w-full z-50 bg-easy-white/95 shadow-md border-b border-easy-gray-secondary/10' : 'sticky top-0 w-full z-40 bg-easy-white border-b border-easy-gray-secondary/20 shadow-sm'}`}>
 
-            <div className="max-w-7xl mx-auto px-4 md:px-6 relative">
-                <div className="flex justify-between items-center h-20">
-
-
-                    <Link href="/" className="flex items-center">
-                        <Image
-                            src="/brand/logo-easyjur.avif"
-                            alt="EasyJur Logo"
-                            width={180}
-                            height={32}
-                            priority
-                            className="h-8 object-contain"
-                        />
-                    </Link>
+                <div className="max-w-7xl mx-auto px-4 md:px-6 relative">
+                    <div className="flex justify-between items-center h-20">
 
 
-                    <div className="hidden lg:flex items-center gap-6 h-full">
-                        <Link href="/" className={navLinkStyle}>Home</Link>
-
-
-                        <div className="group h-full flex items-center">
-                            <div className={navLinkStyle}>
-                                Artigos <ChevronDown size={14} className="group-hover:rotate-180 transition-transform" />
-                            </div>
-
-
-                            <div className="absolute top-20 inset-x-4 md:inset-x-6 bg-easy-white border border-easy-gray-secondary/20 shadow-2xl rounded-b-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
-                                <div className="p-12 grid grid-cols-12 gap-4 items-center">
-
-                                    <div className="col-span-3 pr-10">
-                                        <h3 className="text-[26px] font-bold text-easy-black leading-[1.1] mb-4">
-                                            Navegue nos artigos por categorias
-                                        </h3>
-                                        <p className="text-easy-gray-primary text-sm leading-relaxed mb-6">
-                                            Tudo o que você precisa saber para se manter atualizado no mercado jurídico.
-                                        </p>
-                                        <Link href="/artigos" className="group/link flex items-center gap-2 text-easy-red font-bold text-sm">
-                                            Ver todos os artigos
-                                            <ExternalLink size={14} className="group-hover:translate-x-1 transition-transform" />
-                                        </Link>
-                                    </div>
-
-
-                                    <div className="col-span-9 grid grid-cols-3 gap-x-12 pt-2">
-                                        <ul className="space-y-4 text-[15px] font-medium text-easy-gray-primary">
-                                            <li><Link href="#" className="hover:text-easy-red transition-colors">Direito Ambiental</Link></li>
-                                            <li><Link href="#" className="hover:text-easy-red transition-colors">Direito Administrativo</Link></li>
-                                            <li><Link href="#" className="hover:text-easy-red transition-colors">Direito Civil</Link></li>
-                                            <li><Link href="#" className="hover:text-easy-red transition-colors">Direito Contitucional</Link></li>
-                                            <li><Link href="#" className="hover:text-easy-red transition-colors">Direito de Família</Link></li>
-                                            <li><Link href="#" className="hover:text-easy-red transition-colors">Direito do Consumidor</Link></li>
-                                            <li><Link href="#" className="hover:text-easy-red transition-colors">Direito Eleitoral</Link></li>
-                                        </ul>
-                                        <ul className="space-y-4 text-[15px] font-medium text-easy-gray-primary">
-                                            <li><Link href="#" className="hover:text-easy-red transition-colors">Direito Empresarial</Link></li>
-                                            <li><Link href="#" className="hover:text-easy-red transition-colors">Direito Imobiliário</Link></li>
-                                            <li><Link href="#" className="hover:text-easy-red transition-colors">Direito Internacional</Link></li>
-                                            <li><Link href="#" className="hover:text-easy-red transition-colors">Direito Médico</Link></li>
-                                            <li><Link href="#" className="hover:text-easy-red transition-colors">Direito Penal</Link></li>
-                                            <li><Link href="#" className="hover:text-easy-red transition-colors">Direito Previdenciário</Link></li>
-                                            <li><Link href="#" className="hover:text-easy-red transition-colors">Processual Civil</Link></li>
-                                        </ul>
-                                        <ul className="space-y-4 text-[15px] font-medium text-easy-gray-primary">
-                                            <li><Link href="#" className="hover:text-easy-red transition-colors">Direito Trabalhista</Link></li>
-                                            <li><Link href="#" className="hover:text-easy-red transition-colors">Direito Tributário</Link></li>
-                                            <li><Link href="#" className="hover:text-easy-red transition-colors">EasyJur</Link></li>
-                                            <li><Link href="#" className="hover:text-easy-red transition-colors">Jurisprudência</Link></li>
-                                            <li><Link href="#" className="hover:text-easy-red transition-colors">Ferramentas e Materiais</Link></li>
-                                            <li><Link href="#" className="hover:text-easy-red transition-colors">Organização e Produtividade</Link></li>
-                                            <li><Link href="#" className="hover:text-easy-red transition-colors">Direito Bancário</Link></li>
-                                            <li><Link href="#" className="hover:text-easy-red transition-colors">Direito Social</Link></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <Link href="/planos" className={navLinkStyle}>
-                            Planos
+                        <Link href="/" className="flex items-center">
+                            <Image
+                                src="/brand/logo-easyjur.avif"
+                                alt="EasyJur Logo"
+                                width={180}
+                                height={32}
+                                priority
+                                className="h-8 object-contain"
+                            />
                         </Link>
 
 
-                        <div className="group h-full flex items-center">
-                            <div className={navLinkStyle}>
-                                Conteúdos <ChevronDown size={14} className="group-hover:rotate-180 transition-transform" />
-                            </div>
-                            <div className="absolute top-20 inset-x-4 md:inset-x-6 bg-easy-white border border-easy-gray-secondary/20 shadow-2xl rounded-b-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
-                                <div className="grid grid-cols-12">
-
-                                    <div className="col-span-7 grid grid-cols-3 gap-8 p-10 border-r border-easy-gray-secondary/20">
-                                        <div className="space-y-4">
-                                            <h4 className="font-bold text-xs text-easy-red uppercase tracking-widest">Jurídico</h4>
-                                            <ul className="space-y-3 text-sm text-easy-gray-primary">
-                                                <li className="hover:translate-x-1 transition-transform"><Link href="#" className="hover:text-easy-red">Doutrina</Link></li>
-                                                <li className="hover:translate-x-1 transition-transform"><Link href="#" className="hover:text-easy-red">Modelos</Link></li>
-                                                <li className="hover:translate-x-1 transition-transform"><Link href="#" className="hover:text-easy-red">Prática Cível</Link></li>
-                                            </ul>
-                                        </div>
-                                        <div className="space-y-4">
-                                            <h4 className="font-bold text-xs text-easy-red uppercase tracking-widest">Gestão</h4>
-                                            <ul className="space-y-3 text-sm text-easy-gray-primary">
-                                                <li className="hover:translate-x-1 transition-transform"><Link href="#" className="hover:text-easy-red">Produtividade</Link></li>
-                                                <li className="hover:translate-x-1 transition-transform"><Link href="#" className="hover:text-easy-red">Financeiro</Link></li>
-                                                <li className="hover:translate-x-1 transition-transform"><Link href="#" className="hover:text-easy-red">Marketing</Link></li>
-                                            </ul>
-                                        </div>
-                                        <div className="space-y-4">
-                                            <h4 className="font-bold text-xs text-easy-red uppercase tracking-widest">Tecnologia</h4>
-                                            <ul className="space-y-3 text-sm text-easy-gray-primary">
-                                                <li className="hover:translate-x-1 transition-transform"><Link href="#" className="hover:text-easy-red">Inteligência Artificial</Link></li>
-                                                <li className="hover:translate-x-1 transition-transform"><Link href="#" className="hover:text-easy-red">Software Jurídico</Link></li>
-                                                <li className="hover:translate-x-1 transition-transform"><Link href="#" className="hover:text-easy-red">Segurança</Link></li>
-                                            </ul>
-                                        </div>
-                                    </div>
+                        <div className="hidden lg:flex items-center gap-6 h-full">
+                            <Link href="/" className={navLinkStyle}>Home</Link>
 
 
-                                    <div className="col-span-5 bg-easy-gray-secondary/5 p-10">
-                                        <div className="flex items-center justify-between mb-6">
-                                            <h3 className="font-bold text-easy-black text-lg">Notícias Mundo Jurídico</h3>
-                                            <button
-                                                onClick={loadNews}
-                                                className="flex items-center gap-2 text-[10px] font-bold text-easy-gray-primary hover:text-easy-red transition-colors bg-easy-white px-3 py-1.5 rounded-full border border-easy-gray-secondary/20 shadow-sm"
-                                            >
-                                                {loading ? <RefreshCw size={12} className="animate-spin" /> : <RefreshCw size={12} />}
-                                                SINCRONIZAR
-                                            </button>
-                                        </div>
-
-                                        <div className="relative h-48 bg-easy-white rounded-2xl border border-easy-gray-secondary/20 shadow-sm overflow-hidden group/card">
-                                            {news.length > 0 ? (
-                                                news.map((item, index) => (
-                                                    <a
-                                                        key={index}
-                                                        href={item.link}
-                                                        target="_blank"
-                                                        rel="noreferrer"
-                                                        tabIndex={0}
-                                                        aria-label={`Abrir notícia: ${item.title}`}
-                                                        onMouseEnter={() => setIsPaused(true)}
-                                                        onMouseLeave={() => setIsPaused(false)}
-                                                        onFocus={() => setIsPaused(true)}
-                                                        onBlur={() => setIsPaused(false)}
-                                                        className={`absolute inset-0 p-4 flex gap-4 items-stretch transition-all duration-500 ease-in-out ${index === currentIndex ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4 pointer-events-none"
-                                                            }`}
-                                                    >
-                                                        <div className="shrink-0 w-32 h-full rounded-lg overflow-hidden bg-easy-gray-secondary/10 border border-easy-gray-secondary/20">
-                                                            {item.image ? (
-                                                                <img src={item.image} alt={item.title} className="w-full h-full object-cover" />
-                                                            ) : (
-                                                                <div className="flex h-full w-full flex-col items-center justify-center gap-2 p-3 bg-easy-gray-secondary/5">
-                                                                    <svg width="36" height="28" viewBox="0 0 36 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden focusable="false">
-                                                                        <rect width="36" height="28" rx="4" fill="#F3F4F6" />
-                                                                        <path d="M6 20l5-6 4 5 6-8 6 9" stroke="#D1D5DB" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                                                                    </svg>
-                                                                    <span className="text-xs text-easy-gray-primary">Sem imagem</span>
-                                                                </div>
-                                                            )}
-                                                        </div>
-
-                                                        <div className="flex-1 flex flex-col justify-between">
-                                                            <div>
-                                                                <span className="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-easy-red/10 text-easy-red uppercase">
-                                                                    STJ • Oficial
-                                                                </span>
-
-                                                                <h4 className="font-bold text-easy-black text-sm leading-snug line-clamp-3 mt-2">
-                                                                    {item.title}
-                                                                </h4>
-
-                                                                <p className="text-[13px] text-easy-gray-primary mt-2 line-clamp-2">
-                                                                    {item.snippet || 'Sem descrição disponível.'}
-                                                                </p>
-                                                            </div>
-
-                                                            <div className="flex items-center justify-between text-[11px] text-easy-gray-primary font-medium mt-3">
-                                                                <div className="flex items-center gap-1">
-                                                                    <Calendar size={12} />
-                                                                    {item.pubDate ? new Date(item.pubDate).toLocaleDateString('pt-BR') : ''}
-                                                                </div>
-                                                                <div className="flex items-center gap-2 text-easy-red">
-                                                                    <span className="text-xs font-bold">Ler</span>
-                                                                    <ExternalLink size={12} />
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </a>
-                                                ))
-                                            ) : (
-                                                <div className="flex items-center justify-center h-full text-easy-gray-primary text-sm">
-                                                    {loading ? "Buscando dados no STJ..." : "Nenhuma notícia encontrada."}
-                                                </div>
-                                            )}
-
-
-                                        </div>
-
-
-                                        <div className="flex gap-2 mt-4 justify-center">
-                                            {news.map((_, i) => (
-                                                <button
-                                                    key={i}
-                                                    onClick={() => setCurrentIndex(i)}
-                                                    className={`h-1.5 transition-all rounded-full ${i === currentIndex ? "w-6 bg-easy-red" : "w-2 bg-easy-gray-secondary/30"}`}
-                                                />
-                                            ))}
-                                        </div>
-                                    </div>
+                            <div className="group h-full flex items-center">
+                                <div className={navLinkStyle}>
+                                    Artigos <ChevronDown size={14} className="group-hover:rotate-180 transition-transform" />
                                 </div>
-                            </div>
-                        </div>
 
 
-                        <div className="group h-full flex items-center">
-                            <div className={navLinkStyle}>
-                                Materiais <ChevronDown size={14} className="group-hover:rotate-180 transition-transform" />
-                            </div>
+                                <div className="absolute top-20 inset-x-4 md:inset-x-6 bg-easy-white border border-easy-gray-secondary/20 shadow-2xl rounded-b-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
+                                    <div className="p-12 grid grid-cols-12 gap-4 items-center">
 
-                            <div className="absolute top-20 inset-x-4 md:inset-x-6 bg-easy-white border border-easy-gray-secondary/20 shadow-2xl rounded-b-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
-                                <div className="p-8 grid grid-cols-12 gap-6 items-stretch">
-
-                                    <div className="col-span-8 grid grid-cols-3 gap-4">
-                                        {['Cursos', 'Guias Práticos', 'E-books', 'Planilhas', 'Jurisprudências', 'Modelos'].map((cat) => (
-                                            <div key={cat} className="rounded-xl p-4 bg-easy-white border border-easy-gray-secondary/10 hover:shadow-md transition-shadow duration-200">
-                                                <div className="flex items-start gap-3">
-                                                    <div className="w-9 h-9 rounded-full bg-easy-gray-secondary/5 flex items-center justify-center text-easy-red font-bold text-sm">
-                                                        {categoryIcon(cat)}
-                                                    </div>
-                                                    <div className="flex-1">
-                                                        <h4 className="font-semibold text-sm text-easy-black">{cat}</h4>
-                                                        <p className="text-xs text-easy-gray-primary mt-1">Recursos e guias práticos em {cat.toLowerCase()} para apoiar sua rotina jurídica.</p>
-                                                    </div>
-                                                </div>
-
-                                                <ul className="mt-3 space-y-1 text-xs text-easy-gray-primary">
-                                                    {[...Array(3)].map((_, i) => (
-                                                        <li key={i} className="hover:text-easy-red transition-colors"><Link href="#">Material {i + 1} de {cat}</Link></li>
-                                                    ))}
-                                                </ul>
-
-                                                <div className="mt-3">
-                                                    <Link href="#" className="inline-flex items-center gap-1 text-easy-red text-xs font-bold hover:underline">Ver todos</Link>
-                                                </div>
-                                            </div>
-                                        ))}
-                                    </div>
-
-                                    <div className="col-span-4 h-full">
-                                        <div className="rounded-xl p-6 bg-easy-gray-secondary/5 border border-easy-gray-secondary/20 h-full flex flex-col justify-between">
-                                            <div>
-                                                <h5 className="font-bold text-sm text-easy-black">Materiais em destaque</h5>
-                                                <p className="text-sm text-easy-gray-primary mt-3">Acesse cursos, e-books e guias selecionados pelos nossos especialistas. Conteúdo atualizado semanalmente.</p>
-
-                                                <div className="mt-4 grid grid-cols-1 gap-3">
-                                                    {featuredMaterials.map((m) => (
-                                                        <div key={m.id} className="flex items-center justify-between p-3 bg-easy-white rounded-md border border-easy-gray-secondary/20 hover:shadow-sm transition-shadow">
-                                                            <div className="flex items-center gap-3">
-                                                                <div className="w-12 h-8 bg-easy-gray-secondary/10 rounded-md flex items-center justify-center text-xs text-easy-gray-primary">{m.type}</div>
-                                                                <div className="text-xs">
-                                                                    <div className="font-medium text-easy-black">
-                                                                        {m.title}
-                                                                    </div>
-                                                                    <div className="text-xs text-easy-gray-primary">{m.meta}</div>
-                                                                </div>
-                                                            </div>
-
-                                                            <div className="flex flex-col items-center gap-2">
-                                                                {m.isNew && (
-                                                                    <span className="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-easy-red/10 text-easy-red uppercase" aria-hidden>
-                                                                        Novo
-                                                                    </span>
-                                                                )}
-
-                                                                <Link href={m.downloadHref} className="p-2 rounded-md bg-easy-gray-secondary/5 hover:bg-easy-gray-secondary/10 text-easy-gray-primary" aria-label={`Ir para página de download de ${m.title}`}>
-                                                                    <DownloadCloud size={16} />
-                                                                </Link>
-                                                            </div>
-                                                        </div>
-                                                    ))}
-                                                </div>
-                                            </div>
-
-
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <div className="group h-full flex items-center" onMouseLeave={() => { setVideoPlaying(null); setVideoPaused(false); }}>
-                            <div className={navLinkStyle}>
-                                A EasyJur <ChevronDown size={14} className="group-hover:rotate-180 transition-transform" />
-                            </div>
-                            <div className="absolute top-20 inset-x-4 md:inset-x-6 bg-easy-white border border-easy-gray-secondary/20 shadow-2xl rounded-b-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
-                                <div className="p-10 grid grid-cols-12 gap-8">
-                                    <div className="col-span-4 flex flex-col gap-2 border-r border-easy-gray-secondary/20 pr-8">
-                                        {['Trabalhe Conosco', 'Manifesto EasyJur', 'Fale Conosco', 'Suporte', 'Central de Aprendizagem'].map(link => (
-                                            <Link key={link} href="#" className="text-sm font-medium text-easy-gray-primary hover:text-easy-red transition-colors py-1">
-                                                {link}
+                                        <div className="col-span-3 pr-10">
+                                            <h3 className="text-[26px] font-bold text-easy-black leading-[1.1] mb-4">
+                                                Navegue nos artigos por categorias
+                                            </h3>
+                                            <p className="text-easy-gray-primary text-sm leading-relaxed mb-6">
+                                                Tudo o que você precisa saber para se manter atualizado no mercado jurídico.
+                                            </p>
+                                            <Link href="/artigos" className="group/link flex items-center gap-2 text-easy-red font-bold text-sm">
+                                                Ver todos os artigos
+                                                <ExternalLink size={14} className="group-hover:translate-x-1 transition-transform" />
                                             </Link>
-                                        ))}
-                                    </div>
-                                    <div className="col-span-4">
-                                        <h4 className="font-bold text-sm mb-4 text-easy-gray-primary">O que falam de nós</h4>
+                                        </div>
 
-                                        <div
-                                            className="relative w-full rounded-xl border border-easy-gray-secondary/20 bg-white overflow-hidden"
-                                            onMouseEnter={() => setVideoPaused(true)}
-                                            onMouseLeave={() => setVideoPaused(false)}
-                                        >
 
-                                            <div className="relative aspect-video bg-easy-gray-secondary/10 flex items-center justify-center">
-                                                {videoSlides.map((v, i) => (
-                                                    <div
-                                                        key={v.id}
-                                                        className={`absolute inset-0 transition-all duration-500 ease-in-out ${i === videoIndex ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 pointer-events-none'}`}
-                                                        aria-hidden={i === videoIndex ? 'false' : 'true'}
-                                                    >
-                                                        {videoPlaying === i ? (
-                                                            <div className="w-full h-full relative">
-                                                                <iframe
-                                                                    title={v.title}
-                                                                    className="w-full h-full"
-                                                                    src={`https://www.youtube.com/embed/${v.id}?autoplay=1&rel=0`}
-                                                                    allow="autoplay; encrypted-media; picture-in-picture"
-                                                                    frameBorder="0"
-                                                                    allowFullScreen
-                                                                />
-
-                                                                <button
-                                                                    onClick={() => { setVideoPlaying(null); setIsPaused(false); }}
-                                                                    aria-label="Fechar vídeo"
-                                                                    className="absolute top-2 right-2 bg-white/90 hover:bg-white rounded-full p-1 shadow"
-                                                                >
-                                                                    <X size={16} />
-                                                                </button>
-                                                            </div>
-                                                        ) : (
-
-                                                            <div className="w-full h-full relative">
-                                                                <img
-                                                                    src={`https://img.youtube.com/vi/${v.id}/hqdefault.jpg`}
-                                                                    alt={v.title}
-                                                                    className="w-full h-full object-cover"
-                                                                />
-
-                                                                <button
-                                                                    onClick={() => { setVideoPlaying(i); setIsPaused(true); }}
-                                                                    aria-label={`Tocar vídeo: ${v.title}`}
-                                                                    className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/60 text-white rounded-full p-3 flex items-center justify-center"
-                                                                >
-                                                                    <Play size={28} />
-                                                                </button>
-                                                            </div>
-                                                        )}
-                                                    </div>
-                                                ))}
-
-                                                <div className="absolute right-3 bottom-3 flex items-center gap-2 z-20">
-                                                    <button
-                                                        onClick={() => {
-                                                            if (videoPlaying !== null) {
-                                                                setVideoPlaying(null);
-                                                                setIsPaused(false);
-                                                                setVideoPaused(false);
-                                                            }
-                                                            setVideoIndex((prev) => (prev - 1 + videoSlides.length) % videoSlides.length);
-                                                        }}
-                                                        className="p-1.5 bg-white/75 hover:bg-white opacity-75 hover:opacity-100 rounded-full shadow-sm text-easy-gray-primary border border-easy-gray-secondary/10 transition-opacity"
-                                                        aria-label="Anterior depoimento"
-                                                    >
-                                                        <ChevronLeft size={12} />
-                                                    </button>
-
-                                                    <button
-                                                        onClick={() => {
-                                                            if (videoPlaying !== null) {
-                                                                setVideoPlaying(null);
-                                                                setIsPaused(false);
-                                                                setVideoPaused(false);
-                                                            }
-                                                            setVideoIndex((prev) => (prev + 1) % videoSlides.length);
-                                                        }}
-                                                        className="p-1.5 bg-white/75 hover:bg-white opacity-75 hover:opacity-100 rounded-full shadow-sm text-easy-gray-primary border border-easy-gray-secondary/10 transition-opacity"
-                                                        aria-label="Próximo depoimento"
-                                                    >
-                                                        <ChevronRight size={12} />
-                                                    </button>
-                                                </div>
-                                            </div>
+                                        <div className="col-span-9 grid grid-cols-3 gap-x-12 pt-2">
+                                            <ul className="space-y-4 text-[15px] font-medium text-easy-gray-primary">
+                                                <li><Link href="#" className="hover:text-easy-red transition-colors">Direito Ambiental</Link></li>
+                                                <li><Link href="#" className="hover:text-easy-red transition-colors">Direito Administrativo</Link></li>
+                                                <li><Link href="#" className="hover:text-easy-red transition-colors">Direito Civil</Link></li>
+                                                <li><Link href="#" className="hover:text-easy-red transition-colors">Direito Contitucional</Link></li>
+                                                <li><Link href="#" className="hover:text-easy-red transition-colors">Direito de Família</Link></li>
+                                                <li><Link href="#" className="hover:text-easy-red transition-colors">Direito do Consumidor</Link></li>
+                                                <li><Link href="#" className="hover:text-easy-red transition-colors">Direito Eleitoral</Link></li>
+                                            </ul>
+                                            <ul className="space-y-4 text-[15px] font-medium text-easy-gray-primary">
+                                                <li><Link href="#" className="hover:text-easy-red transition-colors">Direito Empresarial</Link></li>
+                                                <li><Link href="#" className="hover:text-easy-red transition-colors">Direito Imobiliário</Link></li>
+                                                <li><Link href="#" className="hover:text-easy-red transition-colors">Direito Internacional</Link></li>
+                                                <li><Link href="#" className="hover:text-easy-red transition-colors">Direito Médico</Link></li>
+                                                <li><Link href="#" className="hover:text-easy-red transition-colors">Direito Penal</Link></li>
+                                                <li><Link href="#" className="hover:text-easy-red transition-colors">Direito Previdenciário</Link></li>
+                                                <li><Link href="#" className="hover:text-easy-red transition-colors">Processual Civil</Link></li>
+                                            </ul>
+                                            <ul className="space-y-4 text-[15px] font-medium text-easy-gray-primary">
+                                                <li><Link href="#" className="hover:text-easy-red transition-colors">Direito Trabalhista</Link></li>
+                                                <li><Link href="#" className="hover:text-easy-red transition-colors">Direito Tributário</Link></li>
+                                                <li><Link href="#" className="hover:text-easy-red transition-colors">EasyJur</Link></li>
+                                                <li><Link href="#" className="hover:text-easy-red transition-colors">Jurisprudência</Link></li>
+                                                <li><Link href="#" className="hover:text-easy-red transition-colors">Ferramentas e Materiais</Link></li>
+                                                <li><Link href="#" className="hover:text-easy-red transition-colors">Organização e Produtividade</Link></li>
+                                                <li><Link href="#" className="hover:text-easy-red transition-colors">Direito Bancário</Link></li>
+                                                <li><Link href="#" className="hover:text-easy-red transition-colors">Direito Social</Link></li>
+                                            </ul>
                                         </div>
                                     </div>
-                                    <div className="col-span-4">
-                                        <h4 className="font-bold text-sm mb-4 text-easy-gray-primary">Depoimentos</h4>
+                                </div>
+                            </div>
 
-                                        <div
-                                            className="relative aspect-video p-4 bg-easy-white rounded-xl border border-easy-gray-secondary/20 text-sm text-easy-gray-primary shadow-sm flex flex-col"
-                                            onMouseEnter={() => setTestimonialPaused(true)}
-                                            onMouseLeave={() => setTestimonialPaused(false)}
-                                        >
-                                            <div className="relative flex-1 overflow-hidden">
-                                                {writtenTestimonials.map((t, i) => (
-                                                    <div
-                                                        key={t.id}
-                                                        className={`absolute inset-0 transition-all duration-500 ease-in-out p-4 flex flex-col justify-center ${i === testimonialIndex ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2 pointer-events-none'}`}
-                                                        aria-hidden={i === testimonialIndex ? 'false' : 'true'}
-                                                    >
-                                                        <blockquote className="italic text-[14px] leading-snug">"{t.text}"</blockquote>
-                                                        <div className="mt-3 text-xs text-easy-gray-primary">
-                                                            <div className="font-semibold text-easy-black">{t.author}</div>
-                                                            <div>{t.role}</div>
-                                                        </div>
-                                                    </div>
-                                                ))}
+
+                            <Link href="/planos" className={navLinkStyle}>
+                                Planos
+                            </Link>
+
+
+                            <div className="group h-full flex items-center">
+                                <div className={navLinkStyle}>
+                                    Conteúdos <ChevronDown size={14} className="group-hover:rotate-180 transition-transform" />
+                                </div>
+                                <div className="absolute top-20 inset-x-4 md:inset-x-6 bg-easy-white border border-easy-gray-secondary/20 shadow-2xl rounded-b-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
+                                    <div className="grid grid-cols-12">
+
+                                        <div className="col-span-7 grid grid-cols-3 gap-8 p-10 border-r border-easy-gray-secondary/20">
+                                            <div className="space-y-4">
+                                                <h4 className="font-bold text-xs text-easy-red uppercase tracking-widest">Jurídico</h4>
+                                                <ul className="space-y-3 text-sm text-easy-gray-primary">
+                                                    <li className="hover:translate-x-1 transition-transform"><Link href="#" className="hover:text-easy-red">Doutrina</Link></li>
+                                                    <li className="hover:translate-x-1 transition-transform"><Link href="#" className="hover:text-easy-red">Modelos</Link></li>
+                                                    <li className="hover:translate-x-1 transition-transform"><Link href="#" className="hover:text-easy-red">Prática Cível</Link></li>
+                                                </ul>
+                                            </div>
+                                            <div className="space-y-4">
+                                                <h4 className="font-bold text-xs text-easy-red uppercase tracking-widest">Gestão</h4>
+                                                <ul className="space-y-3 text-sm text-easy-gray-primary">
+                                                    <li className="hover:translate-x-1 transition-transform"><Link href="#" className="hover:text-easy-red">Produtividade</Link></li>
+                                                    <li className="hover:translate-x-1 transition-transform"><Link href="#" className="hover:text-easy-red">Financeiro</Link></li>
+                                                    <li className="hover:translate-x-1 transition-transform"><Link href="#" className="hover:text-easy-red">Marketing</Link></li>
+                                                </ul>
+                                            </div>
+                                            <div className="space-y-4">
+                                                <h4 className="font-bold text-xs text-easy-red uppercase tracking-widest">Tecnologia</h4>
+                                                <ul className="space-y-3 text-sm text-easy-gray-primary">
+                                                    <li className="hover:translate-x-1 transition-transform"><Link href="#" className="hover:text-easy-red">Inteligência Artificial</Link></li>
+                                                    <li className="hover:translate-x-1 transition-transform"><Link href="#" className="hover:text-easy-red">Software Jurídico</Link></li>
+                                                    <li className="hover:translate-x-1 transition-transform"><Link href="#" className="hover:text-easy-red">Segurança</Link></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+
+
+                                        <div className="col-span-5 bg-easy-gray-secondary/5 p-10">
+                                            <div className="flex items-center justify-between mb-6">
+                                                <h3 className="font-bold text-easy-black text-lg">Notícias Mundo Jurídico</h3>
+                                                <button
+                                                    onClick={loadNews}
+                                                    className="flex items-center gap-2 text-[10px] font-bold text-easy-gray-primary hover:text-easy-red transition-colors bg-easy-white px-3 py-1.5 rounded-full border border-easy-gray-secondary/20 shadow-sm"
+                                                >
+                                                    {loading ? <RefreshCw size={12} className="animate-spin" /> : <RefreshCw size={12} />}
+                                                    SINCRONIZAR
+                                                </button>
                                             </div>
 
-                                            <div className="mt-3 flex items-center justify-center gap-2">
-                                                {writtenTestimonials.map((_, i) => (
+                                            <div className="relative h-48 bg-easy-white rounded-2xl border border-easy-gray-secondary/20 shadow-sm overflow-hidden group/card">
+                                                {news.length > 0 ? (
+                                                    news.map((item, index) => (
+                                                        <a
+                                                            key={index}
+                                                            href={item.link}
+                                                            target="_blank"
+                                                            rel="noreferrer"
+                                                            tabIndex={0}
+                                                            aria-label={`Abrir notícia: ${item.title}`}
+                                                            onMouseEnter={() => setIsPaused(true)}
+                                                            onMouseLeave={() => setIsPaused(false)}
+                                                            onFocus={() => setIsPaused(true)}
+                                                            onBlur={() => setIsPaused(false)}
+                                                            className={`absolute inset-0 p-4 flex gap-4 items-stretch transition-all duration-500 ease-in-out ${index === currentIndex ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4 pointer-events-none"
+                                                                }`}
+                                                        >
+                                                            <div className="shrink-0 w-32 h-full rounded-lg overflow-hidden bg-easy-gray-secondary/10 border border-easy-gray-secondary/20">
+                                                                {item.image ? (
+                                                                    <img src={item.image} alt={item.title} className="w-full h-full object-cover" />
+                                                                ) : (
+                                                                    <div className="flex h-full w-full flex-col items-center justify-center gap-2 p-3 bg-easy-gray-secondary/5">
+                                                                        <svg width="36" height="28" viewBox="0 0 36 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden focusable="false">
+                                                                            <rect width="36" height="28" rx="4" fill="#F3F4F6" />
+                                                                            <path d="M6 20l5-6 4 5 6-8 6 9" stroke="#D1D5DB" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                                                                        </svg>
+                                                                        <span className="text-xs text-easy-gray-primary">Sem imagem</span>
+                                                                    </div>
+                                                                )}
+                                                            </div>
+
+                                                            <div className="flex-1 flex flex-col justify-between">
+                                                                <div>
+                                                                    <span className="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-easy-red/10 text-easy-red uppercase">
+                                                                        STJ • Oficial
+                                                                    </span>
+
+                                                                    <h4 className="font-bold text-easy-black text-sm leading-snug line-clamp-3 mt-2">
+                                                                        {item.title}
+                                                                    </h4>
+
+                                                                    <p className="text-[13px] text-easy-gray-primary mt-2 line-clamp-2">
+                                                                        {item.snippet || 'Sem descrição disponível.'}
+                                                                    </p>
+                                                                </div>
+
+                                                                <div className="flex items-center justify-between text-[11px] text-easy-gray-primary font-medium mt-3">
+                                                                    <div className="flex items-center gap-1">
+                                                                        <Calendar size={12} />
+                                                                        {item.pubDate ? new Date(item.pubDate).toLocaleDateString('pt-BR') : ''}
+                                                                    </div>
+                                                                    <div className="flex items-center gap-2 text-easy-red">
+                                                                        <span className="text-xs font-bold">Ler</span>
+                                                                        <ExternalLink size={12} />
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                    ))
+                                                ) : (
+                                                    <div className="flex items-center justify-center h-full text-easy-gray-primary text-sm">
+                                                        {loading ? "Buscando dados no STJ..." : "Nenhuma notícia encontrada."}
+                                                    </div>
+                                                )}
+
+
+                                            </div>
+
+
+                                            <div className="flex gap-2 mt-4 justify-center">
+                                                {news.map((_, i) => (
                                                     <button
                                                         key={i}
-                                                        onClick={() => setTestimonialIndex(i)}
-                                                        className={`h-1.5 transition-all rounded-full ${i === testimonialIndex ? "w-6 bg-easy-red" : "w-2 bg-easy-gray-secondary/30"}`}
-                                                        aria-label={`Ir para depoimento ${i + 1}`}
+                                                        onClick={() => setCurrentIndex(i)}
+                                                        className={`h-1.5 transition-all rounded-full ${i === currentIndex ? "w-6 bg-easy-red" : "w-2 bg-easy-gray-secondary/30"}`}
                                                     />
                                                 ))}
                                             </div>
@@ -587,34 +366,255 @@ export default function Navbar() {
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
 
-                    <div className="hidden lg:flex items-center gap-4">
-                        <div className="relative">
-                            <input
-                                type="text"
-                                placeholder="Buscar conteúdo..."
-                                value={searchQuery}
-                                onChange={(e) => setSearchQuery(e.target.value)}
-                                className="w-48 lg:w-64 bg-gray-50 border border-gray-200 rounded-full px-4 py-2 pl-10 text-sm focus:outline-none focus:border-easy-red focus:bg-white transition-all"
-                            />
-                            <Search size={18} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
+
+                            <div className="group h-full flex items-center">
+                                <div className={navLinkStyle}>
+                                    Materiais <ChevronDown size={14} className="group-hover:rotate-180 transition-transform" />
+                                </div>
+
+                                <div className="absolute top-20 inset-x-4 md:inset-x-6 bg-easy-white border border-easy-gray-secondary/20 shadow-2xl rounded-b-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
+                                    <div className="p-8 grid grid-cols-12 gap-6 items-stretch">
+
+                                        <div className="col-span-8 grid grid-cols-3 gap-4">
+                                            {['Cursos', 'Guias Práticos', 'E-books', 'Planilhas', 'Jurisprudências', 'Modelos'].map((cat) => (
+                                                <div key={cat} className="rounded-xl p-4 bg-easy-white border border-easy-gray-secondary/10 hover:shadow-md transition-shadow duration-200">
+                                                    <div className="flex items-start gap-3">
+                                                        <div className="w-9 h-9 rounded-full bg-easy-gray-secondary/5 flex items-center justify-center text-easy-red font-bold text-sm">
+                                                            {categoryIcon(cat)}
+                                                        </div>
+                                                        <div className="flex-1">
+                                                            <h4 className="font-semibold text-sm text-easy-black">{cat}</h4>
+                                                            <p className="text-xs text-easy-gray-primary mt-1">Recursos e guias práticos em {cat.toLowerCase()} para apoiar sua rotina jurídica.</p>
+                                                        </div>
+                                                    </div>
+
+                                                    <ul className="mt-3 space-y-1 text-xs text-easy-gray-primary">
+                                                        {[...Array(3)].map((_, i) => (
+                                                            <li key={i} className="hover:text-easy-red transition-colors"><Link href="#">Material {i + 1} de {cat}</Link></li>
+                                                        ))}
+                                                    </ul>
+
+                                                    <div className="mt-3">
+                                                        <Link href="#" className="inline-flex items-center gap-1 text-easy-red text-xs font-bold hover:underline">Ver todos</Link>
+                                                    </div>
+                                                </div>
+                                            ))}
+                                        </div>
+
+                                        <div className="col-span-4 h-full">
+                                            <div className="rounded-xl p-6 bg-easy-gray-secondary/5 border border-easy-gray-secondary/20 h-full flex flex-col justify-between">
+                                                <div>
+                                                    <h5 className="font-bold text-sm text-easy-black">Materiais em destaque</h5>
+                                                    <p className="text-sm text-easy-gray-primary mt-3">Acesse cursos, e-books e guias selecionados pelos nossos especialistas. Conteúdo atualizado semanalmente.</p>
+
+                                                    <div className="mt-4 grid grid-cols-1 gap-3">
+                                                        {featuredMaterials.map((m) => (
+                                                            <div key={m.id} className="flex items-center justify-between p-3 bg-easy-white rounded-md border border-easy-gray-secondary/20 hover:shadow-sm transition-shadow">
+                                                                <div className="flex items-center gap-3">
+                                                                    <div className="w-12 h-8 bg-easy-gray-secondary/10 rounded-md flex items-center justify-center text-xs text-easy-gray-primary">{m.type}</div>
+                                                                    <div className="text-xs">
+                                                                        <div className="font-medium text-easy-black">
+                                                                            {m.title}
+                                                                        </div>
+                                                                        <div className="text-xs text-easy-gray-primary">{m.meta}</div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div className="flex flex-col items-center gap-2">
+                                                                    {m.isNew && (
+                                                                        <span className="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-easy-red/10 text-easy-red uppercase" aria-hidden>
+                                                                            Novo
+                                                                        </span>
+                                                                    )}
+
+                                                                    <Link href={m.downloadHref} className="p-2 rounded-md bg-easy-gray-secondary/5 hover:bg-easy-gray-secondary/10 text-easy-gray-primary" aria-label={`Ir para página de download de ${m.title}`}>
+                                                                        <DownloadCloud size={16} />
+                                                                    </Link>
+                                                                </div>
+                                                            </div>
+                                                        ))}
+                                                    </div>
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div className="group h-full flex items-center" onMouseLeave={() => { setVideoPlaying(null); setVideoPaused(false); }}>
+                                <div className={navLinkStyle}>
+                                    A EasyJur <ChevronDown size={14} className="group-hover:rotate-180 transition-transform" />
+                                </div>
+                                <div className="absolute top-20 inset-x-4 md:inset-x-6 bg-easy-white border border-easy-gray-secondary/20 shadow-2xl rounded-b-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
+                                    <div className="p-10 grid grid-cols-12 gap-8">
+                                        <div className="col-span-4 flex flex-col gap-2 border-r border-easy-gray-secondary/20 pr-8">
+                                            {['Trabalhe Conosco', 'Manifesto EasyJur', 'Fale Conosco', 'Suporte', 'Central de Aprendizagem'].map(link => (
+                                                <Link key={link} href="#" className="text-sm font-medium text-easy-gray-primary hover:text-easy-red transition-colors py-1">
+                                                    {link}
+                                                </Link>
+                                            ))}
+                                        </div>
+                                        <div className="col-span-4">
+                                            <h4 className="font-bold text-sm mb-4 text-easy-gray-primary">O que falam de nós</h4>
+
+                                            <div
+                                                className="relative w-full rounded-xl border border-easy-gray-secondary/20 bg-white overflow-hidden"
+                                                onMouseEnter={() => setVideoPaused(true)}
+                                                onMouseLeave={() => setVideoPaused(false)}
+                                            >
+
+                                                <div className="relative aspect-video bg-easy-gray-secondary/10 flex items-center justify-center">
+                                                    {videoSlides.map((v, i) => (
+                                                        <div
+                                                            key={v.id}
+                                                            className={`absolute inset-0 transition-all duration-500 ease-in-out ${i === videoIndex ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 pointer-events-none'}`}
+                                                            aria-hidden={i === videoIndex ? 'false' : 'true'}
+                                                        >
+                                                            {videoPlaying === i ? (
+                                                                <div className="w-full h-full relative">
+                                                                    <iframe
+                                                                        title={v.title}
+                                                                        className="w-full h-full"
+                                                                        src={`https://www.youtube.com/embed/${v.id}?autoplay=1&rel=0`}
+                                                                        allow="autoplay; encrypted-media; picture-in-picture"
+                                                                        frameBorder="0"
+                                                                        allowFullScreen
+                                                                    />
+
+                                                                    <button
+                                                                        onClick={() => { setVideoPlaying(null); setIsPaused(false); }}
+                                                                        aria-label="Fechar vídeo"
+                                                                        className="absolute top-2 right-2 bg-white/90 hover:bg-white rounded-full p-1 shadow"
+                                                                    >
+                                                                        <X size={16} />
+                                                                    </button>
+                                                                </div>
+                                                            ) : (
+
+                                                                <div className="w-full h-full relative">
+                                                                    <img
+                                                                        src={`https://img.youtube.com/vi/${v.id}/hqdefault.jpg`}
+                                                                        alt={v.title}
+                                                                        className="w-full h-full object-cover"
+                                                                    />
+
+                                                                    <button
+                                                                        onClick={() => { setVideoPlaying(i); setIsPaused(true); }}
+                                                                        aria-label={`Tocar vídeo: ${v.title}`}
+                                                                        className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/60 text-white rounded-full p-3 flex items-center justify-center"
+                                                                    >
+                                                                        <Play size={28} />
+                                                                    </button>
+                                                                </div>
+                                                            )}
+                                                        </div>
+                                                    ))}
+
+                                                    <div className="absolute right-3 bottom-3 flex items-center gap-2 z-20">
+                                                        <button
+                                                            onClick={() => {
+                                                                if (videoPlaying !== null) {
+                                                                    setVideoPlaying(null);
+                                                                    setIsPaused(false);
+                                                                    setVideoPaused(false);
+                                                                }
+                                                                setVideoIndex((prev) => (prev - 1 + videoSlides.length) % videoSlides.length);
+                                                            }}
+                                                            className="p-1.5 bg-white/75 hover:bg-white opacity-75 hover:opacity-100 rounded-full shadow-sm text-easy-gray-primary border border-easy-gray-secondary/10 transition-opacity"
+                                                            aria-label="Anterior depoimento"
+                                                        >
+                                                            <ChevronLeft size={12} />
+                                                        </button>
+
+                                                        <button
+                                                            onClick={() => {
+                                                                if (videoPlaying !== null) {
+                                                                    setVideoPlaying(null);
+                                                                    setIsPaused(false);
+                                                                    setVideoPaused(false);
+                                                                }
+                                                                setVideoIndex((prev) => (prev + 1) % videoSlides.length);
+                                                            }}
+                                                            className="p-1.5 bg-white/75 hover:bg-white opacity-75 hover:opacity-100 rounded-full shadow-sm text-easy-gray-primary border border-easy-gray-secondary/10 transition-opacity"
+                                                            aria-label="Próximo depoimento"
+                                                        >
+                                                            <ChevronRight size={12} />
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className="col-span-4">
+                                            <h4 className="font-bold text-sm mb-4 text-easy-gray-primary">Depoimentos</h4>
+
+                                            <div
+                                                className="relative aspect-video p-4 bg-easy-white rounded-xl border border-easy-gray-secondary/20 text-sm text-easy-gray-primary shadow-sm flex flex-col"
+                                                onMouseEnter={() => setTestimonialPaused(true)}
+                                                onMouseLeave={() => setTestimonialPaused(false)}
+                                            >
+                                                <div className="relative flex-1 overflow-hidden">
+                                                    {writtenTestimonials.map((t, i) => (
+                                                        <div
+                                                            key={t.id}
+                                                            className={`absolute inset-0 transition-all duration-500 ease-in-out p-4 flex flex-col justify-center ${i === testimonialIndex ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2 pointer-events-none'}`}
+                                                            aria-hidden={i === testimonialIndex ? 'false' : 'true'}
+                                                        >
+                                                            <blockquote className="italic text-[14px] leading-snug">"{t.text}"</blockquote>
+                                                            <div className="mt-3 text-xs text-easy-gray-primary">
+                                                                <div className="font-semibold text-easy-black">{t.author}</div>
+                                                                <div>{t.role}</div>
+                                                            </div>
+                                                        </div>
+                                                    ))}
+                                                </div>
+
+                                                <div className="mt-3 flex items-center justify-center gap-2">
+                                                    {writtenTestimonials.map((_, i) => (
+                                                        <button
+                                                            key={i}
+                                                            onClick={() => setTestimonialIndex(i)}
+                                                            className={`h-1.5 transition-all rounded-full ${i === testimonialIndex ? "w-6 bg-easy-red" : "w-2 bg-easy-gray-secondary/30"}`}
+                                                            aria-label={`Ir para depoimento ${i + 1}`}
+                                                        />
+                                                    ))}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <button className="bg-easy-red text-white px-4 lg:px-6 py-2 rounded-full text-sm font-bold hover:bg-opacity-90 hover:shadow-lg hover:scale-105 transition-all duration-300">
-                            Teste Grátis
+
+                        <div className="hidden lg:flex items-center gap-4">
+                            <div className="relative">
+                                <input
+                                    type="text"
+                                    placeholder="Buscar conteúdo..."
+                                    value={searchQuery}
+                                    onChange={(e) => setSearchQuery(e.target.value)}
+                                    className="w-48 lg:w-64 bg-gray-50 border border-gray-200 rounded-full px-4 py-2 pl-10 text-sm focus:outline-none focus:border-easy-red focus:bg-white transition-all"
+                                />
+                                <Search size={18} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
+                            </div>
+                            <button className="bg-easy-red text-white px-4 lg:px-6 py-2 rounded-full text-sm font-bold hover:bg-opacity-90 hover:shadow-lg hover:scale-105 transition-all duration-300">
+                                Teste Grátis
+                            </button>
+                        </div>
+
+
+                        <button className="lg:hidden p-2 text-easy-black" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} aria-label="Abrir Menu">
+                            {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
                         </button>
                     </div>
-
-
-                    <button className="lg:hidden p-2 text-easy-black" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} aria-label="Abrir Menu">
-                        {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
-                    </button>
                 </div>
-            </div>
-        </nav>
-        {isSticky && <div aria-hidden className="h-20" />}
-        <Sidebar isOpen={isMobileMenuOpen} onClose={() => setIsMobileMenuOpen(false)} />
+            </nav>
+            {isSticky && <div aria-hidden className="h-20" />}
+            <Sidebar isOpen={isMobileMenuOpen} onClose={() => setIsMobileMenuOpen(false)} />
         </>
     );
 }
