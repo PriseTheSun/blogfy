@@ -11,7 +11,6 @@ export default function Navbar() {
     const [loading, setLoading] = useState(true);
     const navLinkStyle = "flex items-center gap-1 font-semibold text-easy-black hover:text-easy-red transition-colors py-7 cursor-pointer text-sm";
 
-    // Função para buscar os dados do RSS
     const loadNews = useCallback(async () => {
         setLoading(true);
         try {
@@ -25,12 +24,12 @@ export default function Navbar() {
         }
     }, []);
 
-    // Carregar notícias na inicialização
+
     useEffect(() => {
         loadNews();
     }, [loadNews]);
 
-    // Lógica do Slider Automático
+
     useEffect(() => {
         if (news.length === 0 || loading) return;
         const interval = setInterval(() => {
@@ -41,11 +40,11 @@ export default function Navbar() {
 
     return (
         <nav className="sticky top-0 w-full bg-easy-white border-b border-easy-gray-secondary/20 shadow-sm z-40">
-            {/* O 'relative' aqui permite que o menu absoluto se alinhe a este container */}
+
             <div className="max-w-7xl mx-auto px-4 md:px-6 relative">
                 <div className="flex justify-between items-center h-20">
 
-                    {/* Logo */}
+
                     <Link href="/" className="flex items-center">
                         <Image
                             src="/brand/logo-easyjur.avif"
@@ -57,20 +56,20 @@ export default function Navbar() {
                         />
                     </Link>
 
-                    {/* Desktop Menu */}
+
                     <div className="hidden lg:flex items-center gap-6 h-full">
                         <Link href="/" className={navLinkStyle}>Home</Link>
 
-                        {/* 1. ARTIGOS (Megamenu) */}
+
                         <div className="group h-full flex items-center">
                             <div className={navLinkStyle}>
                                 Artigos <ChevronDown size={14} className="group-hover:rotate-180 transition-transform" />
                             </div>
 
-                            {/* Menu ajustado para a largura do container (inset-x) */}
+
                             <div className="absolute top-20 inset-x-4 md:inset-x-6 bg-easy-white border border-easy-gray-secondary/20 shadow-2xl rounded-b-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
                                 <div className="p-12 grid grid-cols-12 gap-4 items-center">
-                                    {/* Bloco de Texto */}
+
                                     <div className="col-span-3 pr-10">
                                         <h3 className="text-[26px] font-bold text-easy-black leading-[1.1] mb-4">
                                             Navegue nos artigos por categorias
@@ -84,7 +83,7 @@ export default function Navbar() {
                                         </Link>
                                     </div>
 
-                                    {/* Colunas de Links */}
+
                                     <div className="col-span-9 grid grid-cols-3 gap-x-12 pt-2">
                                         <ul className="space-y-4 text-[15px] font-medium text-easy-gray-primary">
                                             <li><Link href="#" className="hover:text-easy-red transition-colors">Direito Ambiental</Link></li>
@@ -119,19 +118,19 @@ export default function Navbar() {
                             </div>
                         </div>
 
-                        {/* 2. PLANOS */}
+
                         <Link href="/planos" className={navLinkStyle}>
                             Planos
                         </Link>
 
-                        {/* 3. CONTEÚDOS (Atualizado com as melhorias) */}
+
                         <div className="group h-full flex items-center">
                             <div className={navLinkStyle}>
                                 Conteúdos <ChevronDown size={14} className="group-hover:rotate-180 transition-transform" />
                             </div>
                             <div className="absolute top-20 inset-x-4 md:inset-x-6 bg-easy-white border border-easy-gray-secondary/20 shadow-2xl rounded-b-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
                                 <div className="grid grid-cols-12">
-                                    {/* Colunas EasyJur (60% da largura) */}
+
                                     <div className="col-span-7 grid grid-cols-3 gap-8 p-10 border-r border-easy-gray-secondary/20">
                                         <div className="space-y-4">
                                             <h4 className="font-bold text-xs text-easy-red uppercase tracking-widest">Jurídico</h4>
@@ -159,7 +158,7 @@ export default function Navbar() {
                                         </div>
                                     </div>
 
-                                    {/* Coluna Slider RSS STJ (40% da largura) */}
+
                                     <div className="col-span-5 bg-easy-gray-secondary/5 p-10">
                                         <div className="flex items-center justify-between mb-6">
                                             <h3 className="font-bold text-easy-black text-lg">Notícias Mundo Jurídico</h3>
@@ -209,7 +208,7 @@ export default function Navbar() {
                                             )}
                                         </div>
 
-                                        {/* Indicadores do Slider */}
+
                                         <div className="flex gap-2 mt-4 justify-center">
                                             {news.map((_, i) => (
                                                 <button
@@ -224,7 +223,7 @@ export default function Navbar() {
                             </div>
                         </div>
 
-                        {/* 4. MATERIAIS GRATUITOS */}
+
                         <div className="group h-full flex items-center">
                             <div className={navLinkStyle}>
                                 Materiais <ChevronDown size={14} className="group-hover:rotate-180 transition-transform" />
@@ -246,7 +245,7 @@ export default function Navbar() {
                             </div>
                         </div>
 
-                        {/* 5. A EASYJUR */}
+
                         <div className="group h-full flex items-center">
                             <div className={navLinkStyle}>
                                 A EasyJur <ChevronDown size={14} className="group-hover:rotate-180 transition-transform" />
@@ -277,14 +276,14 @@ export default function Navbar() {
                         </div>
                     </div>
 
-                    {/* Mobile Toggle */}
+
                     <button className="lg:hidden p-2 text-easy-black" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} aria-label="Abrir Menu">
                         {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
                     </button>
                 </div>
             </div>
 
-            {/* Mobile Menu */}
+
             {isMobileMenuOpen && (
                 <div className="lg:hidden bg-easy-white border-t border-easy-gray-secondary/20 p-6 space-y-4 shadow-xl">
                     <Link href="/" className="block font-bold text-easy-black" onClick={() => setIsMobileMenuOpen(false)}>Home</Link>
