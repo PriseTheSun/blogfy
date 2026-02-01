@@ -2,7 +2,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ChevronDown, Menu, X, ExternalLink, RefreshCw, Calendar } from 'lucide-react';
+import { ChevronDown, Menu, X, ExternalLink, RefreshCw, Calendar, BookOpen, FileText, Book, File, Gavel, Clipboard } from 'lucide-react';
 
 export default function Navbar() {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -11,6 +11,33 @@ export default function Navbar() {
     const [loading, setLoading] = useState(true);
     const [isPaused, setIsPaused] = useState(false);
     const navLinkStyle = "flex items-center gap-1 font-semibold text-easy-black hover:text-easy-red transition-colors py-7 cursor-pointer text-sm";
+
+    // Ícones para cada categoria
+    const categoryIcon = (cat: string) => {
+        switch (cat) {
+            case 'Cursos':
+                return <BookOpen size={16} className="text-easy-red" />;
+            case 'Guias Práticos':
+                return <FileText size={16} className="text-easy-red" />;
+            case 'E-books':
+                return <Book size={16} className="text-easy-red" />;
+            case 'Planilhas':
+                return <File size={16} className="text-easy-red" />;
+            case 'Jurisprudências':
+                return <Gavel size={16} className="text-easy-red" />;
+            case 'Modelos':
+                return <Clipboard size={16} className="text-easy-red" />;
+            default:
+                return <Book size={16} className="text-easy-red" />;
+        }
+    };
+
+    // Materiais em destaque (sempre exibir os 3 mais recentes - substitua pela fonte real quando disponível)
+    const featuredMaterials = [
+        { id: 1, type: 'E-book', title: 'Guia Prático de Petições', meta: 'Gratuito • Baixe agora', href: '#' },
+        { id: 2, type: 'Curso', title: 'Curso Intensivo: Prática Cível', meta: '50% off para assinantes', href: '#' },
+        { id: 3, type: 'Planilha', title: 'Planilha de Cálculos Trabalhistas', meta: 'Modelo editável • Baixe já', href: '#' },
+    ];
 
     const loadNews = useCallback(async () => {
         setLoading(true);
@@ -267,19 +294,64 @@ export default function Navbar() {
                             <div className={navLinkStyle}>
                                 Materiais <ChevronDown size={14} className="group-hover:rotate-180 transition-transform" />
                             </div>
+
                             <div className="absolute top-20 inset-x-4 md:inset-x-6 bg-easy-white border border-easy-gray-secondary/20 shadow-2xl rounded-b-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
-                                <div className="p-10 grid grid-cols-6 gap-6">
-                                    {['Cursos', 'Guias Práticos', 'E-books', 'Planilhas', 'Jurisprudências', 'Modelos'].map((cat) => (
-                                        <div key={cat}>
-                                            <h4 className="font-bold text-sm text-easy-black border-b border-easy-red pb-2 mb-3">{cat}</h4>
-                                            <ul className="space-y-1 text-xs text-easy-gray-primary">
-                                                {[...Array(5)].map((_, i) => (
-                                                    <li key={i} className="hover:text-easy-red transition-all"><Link href="#">Link Material {i + 1}</Link></li>
-                                                ))}
-                                                <li className="pt-1 font-bold text-easy-red italic hover:underline"><Link href="#">Ver todos</Link></li>
-                                            </ul>
+                                <div className="p-8 grid grid-cols-12 gap-6 items-stretch">
+
+                                    {/* Categories grid */}
+                                    <div className="col-span-8 grid grid-cols-3 gap-4">
+                                        {['Cursos', 'Guias Práticos', 'E-books', 'Planilhas', 'Jurisprudências', 'Modelos'].map((cat) => (
+                                            <div key={cat} className="rounded-xl p-4 bg-easy-white border border-easy-gray-secondary/10 hover:shadow-md transition-shadow duration-200">
+                                                <div className="flex items-start gap-3">
+                                                    <div className="w-9 h-9 rounded-full bg-easy-gray-secondary/5 flex items-center justify-center text-easy-red font-bold text-sm">
+                                                        {categoryIcon(cat)}
+                                                    </div>
+                                                    <div className="flex-1">
+                                                        <h4 className="font-semibold text-sm text-easy-black">{cat}</h4>
+                                                        <p className="text-xs text-easy-gray-primary mt-1">Recursos e guias práticos em {cat.toLowerCase()} para apoiar sua rotina jurídica.</p>
+                                                    </div>
+                                                </div>
+
+                                                <ul className="mt-3 space-y-1 text-xs text-easy-gray-primary">
+                                                    {[...Array(3)].map((_, i) => (
+                                                        <li key={i} className="hover:text-easy-red transition-colors"><Link href="#">Material {i + 1} de {cat}</Link></li>
+                                                    ))}
+                                                </ul>
+
+                                                <div className="mt-3">
+                                                    <Link href="#" className="inline-flex items-center gap-1 text-easy-red text-xs font-bold hover:underline">Ver todos</Link>
+                                                </div>
+                                            </div>
+                                        ))}
+                                    </div>
+
+                                    {/* Highlight panel */}
+                                    <div className="col-span-4 h-full">
+                                        <div className="rounded-xl p-6 bg-easy-red/5 border border-easy-red/10 h-full flex flex-col justify-between">
+                                            <div>
+                                                <h5 className="font-bold text-sm text-easy-black">Materiais em destaque</h5>
+                                                <p className="text-sm text-easy-gray-primary mt-3">Acesse cursos, e-books e guias selecionados pelos nossos especialistas. Conteúdo atualizado semanalmente.</p>
+
+                                                <div className="mt-4 grid grid-cols-1 gap-3">
+                                                    {featuredMaterials.map((m) => (
+                                                        <Link key={m.id} href={m.href} className="flex items-center gap-3 p-3 bg-easy-white rounded-md border border-easy-gray-secondary/20 hover:shadow-sm transition-shadow">
+                                                            <div className="w-12 h-8 bg-easy-gray-secondary/10 rounded-md flex items-center justify-center text-xs text-easy-gray-primary">{m.type}</div>
+                                                            <div className="text-xs">
+                                                                <div className="font-medium text-easy-black">{m.title}</div>
+                                                                <div className="text-xs text-easy-gray-primary">{m.meta}</div>
+                                                            </div>
+                                                        </Link>
+                                                    ))}
+                                                </div>
+                                            </div>
+
+                                            <div className="mt-4 flex gap-2">
+                                                <Link href="#" className="px-3 py-2 bg-easy-red text-white text-xs font-bold rounded-md">Ver Materiais</Link>
+                                                <Link href="#" className="px-3 py-2 border border-easy-gray-secondary/20 rounded-md text-xs">Ajuda</Link>
+                                            </div>
                                         </div>
-                                    ))}
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
