@@ -12,9 +12,9 @@ interface TopBarProps {
 }
 
 export default function TopBar({
-  title = "Campanha Indique e Ganhe",
-  description = "Indique a EasyJur para colegas e ganhe benefícios exclusivos como acesso premium e descontos.",
-  buttonText = "Quero Indicar Agora",
+  title = "Conteúdo Jurídico de Referência",
+  description = "Atualizações sobre legislação, jurisprudência e prática para advogados e estudantes.",
+  buttonText = "Assine as novidades",
   backgroundColor = "bg-easy-black",
   buttonHref,
   onButtonClick,

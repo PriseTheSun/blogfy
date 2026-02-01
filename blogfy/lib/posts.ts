@@ -16,7 +16,7 @@ export function getSortedPostsData() {
 
         return {
             slug,
-            ...(data as { date: string; title: string; description: string })
+            ...(data as { date: string; title: string; description?: string; category?: string; author?: string; thumbnail?: string })
         };
     });
 

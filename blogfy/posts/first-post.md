@@ -1,8 +1,10 @@
 ---
-title: "Como criar um blog ultra rápido"
+title: "Entendendo a Reforma do Código Civil"
 date: "2026-01-31"
-description: "Aprenda a usar Next.js para atingir 100 no PageSpeed."
-thumbnail: "/images/post-1.jpg"
+description: "Um guia prático para advogados sobre as principais alterações e impactos no cotidiano jurídico."
+category: "Direito"
+author: "Dra. Priscila Almeida"
+thumbnail: "/images/priscila.avif"
 ---
 
 Este é o conteúdo do meu post usando **Markdown**!
