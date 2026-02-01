@@ -2,7 +2,8 @@
 import { useState, useEffect, useCallback } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ChevronDown, Menu, X, ExternalLink, RefreshCw, Calendar, BookOpen, FileText, Book, File, Gavel, Clipboard, DownloadCloud, Play, ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronDown, Menu, X, ExternalLink, RefreshCw, Calendar, BookOpen, FileText, Book, File, Gavel, Clipboard, DownloadCloud, Play, ChevronLeft, ChevronRight, Search } from 'lucide-react';
+import Sidebar from '../Sidebar';
 
 export default function Navbar() {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -10,6 +11,7 @@ export default function Navbar() {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [loading, setLoading] = useState(true);
     const [isPaused, setIsPaused] = useState(false);
+    const [searchQuery, setSearchQuery] = useState('');
     const navLinkStyle = "flex items-center gap-1 font-semibold text-easy-black hover:text-easy-red transition-colors py-7 cursor-pointer text-sm";
 
     const categoryIcon = (cat: string) => {
@@ -137,6 +139,7 @@ export default function Navbar() {
     }, [news, currentIndex]);
 
     return (
+        <>
         <nav className="sticky top-0 w-full bg-easy-white border-b border-easy-gray-secondary/20 shadow-sm z-40">
 
             <div className="max-w-7xl mx-auto px-4 md:px-6 relative">
@@ -549,7 +552,7 @@ export default function Navbar() {
                                                         className={`absolute inset-0 transition-all duration-500 ease-in-out p-4 flex flex-col justify-center ${i === testimonialIndex ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2 pointer-events-none'}`}
                                                         aria-hidden={i === testimonialIndex ? 'false' : 'true'}
                                                     >
-                                                        <blockquote className="italic text-[14px] leading-snug">“{t.text}”</blockquote>
+                                                        <blockquote className="italic text-[14px] leading-snug">"{t.text}"</blockquote>
                                                         <div className="mt-3 text-xs text-easy-gray-primary">
                                                             <div className="font-semibold text-easy-black">{t.author}</div>
                                                             <div>{t.role}</div>
@@ -563,7 +566,7 @@ export default function Navbar() {
                                                     <button
                                                         key={i}
                                                         onClick={() => setTestimonialIndex(i)}
-                                                        className={`h-1.5 transition-all rounded-full ${i === testimonialIndex ? 'w-6 bg-easy-red' : 'w-2 bg-easy-gray-secondary/30'}`}
+                                                        className={`h-1.5 transition-all rounded-full ${i === testimonialIndex ? "w-6 bg-easy-red" : "w-2 bg-easy-gray-secondary/30"}`}
                                                         aria-label={`Ir para depoimento ${i + 1}`}
                                                     />
                                                 ))}
@@ -575,27 +578,30 @@ export default function Navbar() {
                         </div>
                     </div>
 
-                    <div className="hidden lg:flex items-center">
-                        <button className="bg-easy-red text-white px-6 py-2 rounded-full text-sm font-bold hover:bg-opacity-90 hover:shadow-lg hover:scale-105 transition-all duration-300">
+                    <div className="hidden lg:flex items-center gap-4">
+                        <div className="relative">
+                            <input
+                                type="text"
+                                placeholder="Buscar conteúdo..."
+                                value={searchQuery}
+                                onChange={(e) => setSearchQuery(e.target.value)}
+                                className="w-48 lg:w-64 bg-gray-50 border border-gray-200 rounded-full px-4 py-2 pl-10 text-sm focus:outline-none focus:border-easy-red focus:bg-white transition-all"
+                            />
+                            <Search size={18} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
+                        </div>
+                        <button className="bg-easy-red text-white px-4 lg:px-6 py-2 rounded-full text-sm font-bold hover:bg-opacity-90 hover:shadow-lg hover:scale-105 transition-all duration-300">
                             Teste Grátis
                         </button>
                     </div>
+
 
                     <button className="lg:hidden p-2 text-easy-black" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} aria-label="Abrir Menu">
                         {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
                     </button>
                 </div>
             </div>
-
-
-            {isMobileMenuOpen && (
-                <div className="lg:hidden bg-easy-white border-t border-easy-gray-secondary/20 p-6 space-y-4 shadow-xl">
-                    <Link href="/" className="block font-bold text-easy-black" onClick={() => setIsMobileMenuOpen(false)}>Home</Link>
-                    <Link href="/planos" className="block font-bold text-easy-red border-b border-easy-gray-secondary/20 pb-2" onClick={() => setIsMobileMenuOpen(false)}>Planos</Link>
-                    <div className="font-bold text-easy-red border-b border-easy-gray-secondary/20 pb-2">Artigos</div>
-                    <div className="font-bold text-easy-red border-b border-easy-gray-secondary/20 pb-2">Materiais</div>
-                </div>
-            )}
         </nav>
+        <Sidebar isOpen={isMobileMenuOpen} onClose={() => setIsMobileMenuOpen(false)} />
+        </>
     );
 }
