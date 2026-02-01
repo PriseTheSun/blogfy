@@ -9,6 +9,7 @@ export default function Navbar() {
     const [news, setNews] = useState<any[]>([]);
     const [currentIndex, setCurrentIndex] = useState(0);
     const [loading, setLoading] = useState(true);
+    const [isPaused, setIsPaused] = useState(false);
     const navLinkStyle = "flex items-center gap-1 font-semibold text-easy-black hover:text-easy-red transition-colors py-7 cursor-pointer text-sm";
 
     const loadNews = useCallback(async () => {
@@ -31,12 +32,17 @@ export default function Navbar() {
 
 
     useEffect(() => {
-        if (news.length === 0 || loading) return;
+        if (news.length === 0 || loading || isPaused) return;
         const interval = setInterval(() => {
             setCurrentIndex((prev) => (prev + 1) % news.length);
         }, 6000);
         return () => clearInterval(interval);
-    }, [news, loading]);
+    }, [news, loading, isPaused]);
+
+    // Ensure currentIndex is valid when news length changes
+    useEffect(() => {
+        if (currentIndex >= news.length) setCurrentIndex(0);
+    }, [news, currentIndex]);
 
     return (
         <nav className="sticky top-0 w-full bg-easy-white border-b border-easy-gray-secondary/20 shadow-sm z-40">
@@ -178,31 +184,56 @@ export default function Navbar() {
                                                         key={index}
                                                         href={item.link}
                                                         target="_blank"
-                                                        className={`absolute inset-0 p-6 pr-36 flex flex-col justify-between transition-all duration-500 ease-in-out ${index === currentIndex ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4 pointer-events-none"
+                                                        rel="noreferrer"
+                                                        tabIndex={0}
+                                                        aria-label={`Abrir notícia: ${item.title}`}
+                                                        onMouseEnter={() => setIsPaused(true)}
+                                                        onMouseLeave={() => setIsPaused(false)}
+                                                        onFocus={() => setIsPaused(true)}
+                                                        onBlur={() => setIsPaused(false)}
+                                                        className={`absolute inset-0 p-4 flex gap-4 items-stretch transition-all duration-500 ease-in-out ${index === currentIndex ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4 pointer-events-none"
                                                             }`}
                                                     >
-                                                        <div className="space-y-2">
-                                                            <span className="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-easy-red/10 text-easy-red uppercase">
-                                                                STJ • Oficial
-                                                            </span>
-                                                            <h4 className="font-bold text-easy-black text-sm leading-snug line-clamp-3 group-hover/card:text-easy-red transition-colors">
-                                                                {item.title}
-                                                            </h4>
+                                                        {/* Image / Placeholder */}
+                                                        <div className="shrink-0 w-32 h-full rounded-lg overflow-hidden bg-easy-gray-secondary/10 border border-easy-gray-secondary/20">
+                                                            {item.image ? (
+                                                                <img src={item.image} alt={item.title} className="w-full h-full object-cover" />
+                                                            ) : (
+                                                                <div className="flex h-full w-full flex-col items-center justify-center gap-2 p-3 bg-easy-gray-secondary/5">
+                                                                    <svg width="36" height="28" viewBox="0 0 36 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden focusable="false">
+                                                                        <rect width="36" height="28" rx="4" fill="#F3F4F6" />
+                                                                        <path d="M6 20l5-6 4 5 6-8 6 9" stroke="#D1D5DB" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                                                                    </svg>
+                                                                    <span className="text-xs text-easy-gray-primary">Sem imagem</span>
+                                                                </div>
+                                                            )}
                                                         </div>
 
-                                                        {item.image && (
-                                                            <div className="absolute right-6 top-6 w-28 h-20 rounded-lg overflow-hidden">
-                                                                <Image src={item.image} alt={item.title} width={112} height={80} className="object-cover" />
-                                                            </div>
-                                                        )}
+                                                        {/* Content */}
+                                                        <div className="flex-1 flex flex-col justify-between">
+                                                            <div>
+                                                                <span className="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-easy-red/10 text-easy-red uppercase">
+                                                                    STJ • Oficial
+                                                                </span>
 
-                                                        <div className="flex items-center justify-between text-[11px] text-easy-gray-primary font-medium">
-                                                            <div className="flex items-center gap-1">
-                                                                <Calendar size={12} />
-                                                                {new Date(item.pubDate).toLocaleDateString('pt-BR')}
+                                                                <h4 className="font-bold text-easy-black text-sm leading-snug line-clamp-3 mt-2">
+                                                                    {item.title}
+                                                                </h4>
+
+                                                                <p className="text-[13px] text-easy-gray-primary mt-2 line-clamp-2">
+                                                                    {item.snippet || 'Sem descrição disponível.'}
+                                                                </p>
                                                             </div>
-                                                            <div className="flex items-center gap-1 text-easy-red">
-                                                                Ler notícia <ExternalLink size={10} />
+
+                                                            <div className="flex items-center justify-between text-[11px] text-easy-gray-primary font-medium mt-3">
+                                                                <div className="flex items-center gap-1">
+                                                                    <Calendar size={12} />
+                                                                    {item.pubDate ? new Date(item.pubDate).toLocaleDateString('pt-BR') : ''}
+                                                                </div>
+                                                                <div className="flex items-center gap-2 text-easy-red">
+                                                                    <span className="text-xs font-bold">Ler</span>
+                                                                    <ExternalLink size={12} />
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </a>
@@ -212,6 +243,8 @@ export default function Navbar() {
                                                     {loading ? "Buscando dados no STJ..." : "Nenhuma notícia encontrada."}
                                                 </div>
                                             )}
+
+
                                         </div>
 
 
