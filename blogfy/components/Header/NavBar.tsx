@@ -1,14 +1,43 @@
 "use client";
-import { useState } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ChevronDown, Menu, X, ExternalLink } from 'lucide-react';
+import { ChevronDown, Menu, X, ExternalLink, RefreshCw, Calendar } from 'lucide-react';
 
 export default function Navbar() {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
-    // Estilo padrão para os links
+    const [news, setNews] = useState<any[]>([]);
+    const [currentIndex, setCurrentIndex] = useState(0);
+    const [loading, setLoading] = useState(true);
     const navLinkStyle = "flex items-center gap-1 font-semibold text-easy-black hover:text-easy-red transition-colors py-7 cursor-pointer text-sm";
+
+    // Função para buscar os dados do RSS
+    const loadNews = useCallback(async () => {
+        setLoading(true);
+        try {
+            const response = await fetch('/api/rss');
+            const data = await response.json();
+            if (data.items) setNews(data.items);
+        } catch (err) {
+            console.error("Erro ao sincronizar:", err);
+        } finally {
+            setLoading(false);
+        }
+    }, []);
+
+    // Carregar notícias na inicialização
+    useEffect(() => {
+        loadNews();
+    }, [loadNews]);
+
+    // Lógica do Slider Automático
+    useEffect(() => {
+        if (news.length === 0 || loading) return;
+        const interval = setInterval(() => {
+            setCurrentIndex((prev) => (prev + 1) % news.length);
+        }, 6000);
+        return () => clearInterval(interval);
+    }, [news, loading]);
 
     return (
         <nav className="sticky top-0 w-full bg-easy-white border-b border-easy-gray-secondary/20 shadow-sm z-40">
@@ -95,30 +124,100 @@ export default function Navbar() {
                             Planos
                         </Link>
 
-                        {/* 3. CONTEÚDOS */}
+                        {/* 3. CONTEÚDOS (Atualizado com as melhorias) */}
                         <div className="group h-full flex items-center">
                             <div className={navLinkStyle}>
                                 Conteúdos <ChevronDown size={14} className="group-hover:rotate-180 transition-transform" />
                             </div>
                             <div className="absolute top-20 inset-x-4 md:inset-x-6 bg-easy-white border border-easy-gray-secondary/20 shadow-2xl rounded-b-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
-                                <div className="p-10 grid grid-cols-12 gap-8">
-                                    <div className="col-span-8">
-                                        <h4 className="font-bold text-easy-black mb-4 flex items-center gap-2">
-                                            Notícias: Gazeta do Povo <ExternalLink size={14} className="text-easy-red" />
-                                        </h4>
-                                        <div className="grid grid-cols-2 gap-4">
-                                            {[1, 2, 3, 4].map(i => (
-                                                <div key={i} className="p-4 bg-easy-gray-secondary/5 rounded-lg text-sm hover:bg-easy-gray-secondary/10 transition-colors border border-transparent hover:border-easy-red/20">
-                                                    <span className="text-[10px] font-bold text-easy-red uppercase">Gazeta do Povo</span>
-                                                    <p className="font-medium text-easy-black mt-1 line-clamp-1">Título da notícia jurídica integrada via RSS...</p>
-                                                </div>
-                                            ))}
+                                <div className="grid grid-cols-12">
+                                    {/* Colunas EasyJur (60% da largura) */}
+                                    <div className="col-span-7 grid grid-cols-3 gap-8 p-10 border-r border-easy-gray-secondary/20">
+                                        <div className="space-y-4">
+                                            <h4 className="font-bold text-xs text-easy-red uppercase tracking-widest">Jurídico</h4>
+                                            <ul className="space-y-3 text-sm text-easy-gray-primary">
+                                                <li className="hover:translate-x-1 transition-transform"><Link href="#" className="hover:text-easy-red">Doutrina</Link></li>
+                                                <li className="hover:translate-x-1 transition-transform"><Link href="#" className="hover:text-easy-red">Modelos</Link></li>
+                                                <li className="hover:translate-x-1 transition-transform"><Link href="#" className="hover:text-easy-red">Prática Cível</Link></li>
+                                            </ul>
+                                        </div>
+                                        <div className="space-y-4">
+                                            <h4 className="font-bold text-xs text-easy-red uppercase tracking-widest">Gestão</h4>
+                                            <ul className="space-y-3 text-sm text-easy-gray-primary">
+                                                <li className="hover:translate-x-1 transition-transform"><Link href="#" className="hover:text-easy-red">Produtividade</Link></li>
+                                                <li className="hover:translate-x-1 transition-transform"><Link href="#" className="hover:text-easy-red">Financeiro</Link></li>
+                                                <li className="hover:translate-x-1 transition-transform"><Link href="#" className="hover:text-easy-red">Marketing</Link></li>
+                                            </ul>
+                                        </div>
+                                        <div className="space-y-4">
+                                            <h4 className="font-bold text-xs text-easy-red uppercase tracking-widest">Tecnologia</h4>
+                                            <ul className="space-y-3 text-sm text-easy-gray-primary">
+                                                <li className="hover:translate-x-1 transition-transform"><Link href="#" className="hover:text-easy-red">Inteligência Artificial</Link></li>
+                                                <li className="hover:translate-x-1 transition-transform"><Link href="#" className="hover:text-easy-red">Software Jurídico</Link></li>
+                                                <li className="hover:translate-x-1 transition-transform"><Link href="#" className="hover:text-easy-red">Segurança</Link></li>
+                                            </ul>
                                         </div>
                                     </div>
-                                    <div className="col-span-4 bg-easy-black text-easy-white p-6 rounded-2xl border-l-4 border-easy-red">
-                                        <h4 className="font-bold mb-4">Destaques EasyJur</h4>
-                                        <div className="h-32 bg-easy-white/10 rounded-lg flex items-center justify-center text-xs border border-easy-white/10">
-                                            [Slider Notícias EasyJur]
+
+                                    {/* Coluna Slider RSS STJ (40% da largura) */}
+                                    <div className="col-span-5 bg-easy-gray-secondary/5 p-10">
+                                        <div className="flex items-center justify-between mb-6">
+                                            <h3 className="font-bold text-easy-black text-lg">Notícias Mundo Jurídico</h3>
+                                            <button
+                                                onClick={loadNews}
+                                                className="flex items-center gap-2 text-[10px] font-bold text-easy-gray-primary hover:text-easy-red transition-colors bg-easy-white px-3 py-1.5 rounded-full border border-easy-gray-secondary/20 shadow-sm"
+                                            >
+                                                {loading ? <RefreshCw size={12} className="animate-spin" /> : <RefreshCw size={12} />}
+                                                SINCRONIZAR
+                                            </button>
+                                        </div>
+
+                                        <div className="relative h-48 bg-easy-white rounded-2xl border border-easy-gray-secondary/20 shadow-sm overflow-hidden group/card">
+                                            {news.length > 0 ? (
+                                                news.map((item, index) => (
+                                                    <a
+                                                        key={index}
+                                                        href={item.link}
+                                                        target="_blank"
+                                                        className={`absolute inset-0 p-6 flex flex-col justify-between transition-all duration-500 ease-in-out ${index === currentIndex ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4 pointer-events-none"
+                                                            }`}
+                                                    >
+                                                        <div className="space-y-2">
+                                                            <span className="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-easy-red/10 text-easy-red uppercase">
+                                                                STJ • Oficial
+                                                            </span>
+                                                            <h4 className="font-bold text-easy-black text-sm leading-snug line-clamp-3 group-hover/card:text-easy-red transition-colors">
+                                                                {item.title}
+                                                            </h4>
+                                                        </div>
+
+                                                        <div className="flex items-center justify-between text-[11px] text-easy-gray-primary font-medium">
+                                                            <div className="flex items-center gap-1">
+                                                                <Calendar size={12} />
+                                                                {new Date(item.pubDate).toLocaleDateString('pt-BR')}
+                                                            </div>
+                                                            <div className="flex items-center gap-1 text-easy-red">
+                                                                Ler notícia <ExternalLink size={10} />
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                ))
+                                            ) : (
+                                                <div className="flex items-center justify-center h-full text-easy-gray-primary text-sm">
+                                                    {loading ? "Buscando dados no STJ..." : "Nenhuma notícia encontrada."}
+                                                </div>
+                                            )}
+                                        </div>
+
+                                        {/* Indicadores do Slider */}
+                                        <div className="flex gap-2 mt-4 justify-center">
+                                            {news.map((_, i) => (
+                                                <button
+                                                    key={i}
+                                                    onClick={() => setCurrentIndex(i)}
+                                                    className={`h-1.5 transition-all rounded-full ${i === currentIndex ? "w-6 bg-easy-red" : "w-2 bg-easy-gray-secondary/30"}`}
+                                                />
+                                            ))}
                                         </div>
                                     </div>
                                 </div>
