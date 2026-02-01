@@ -41,7 +41,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-br" className={plusJakartaSans.variable} suppressHydrationWarning>
-      <body className="font-sans antialiased min-h-screen bg-white text-zinc-900">
+      <body suppressHydrationWarning className="font-sans antialiased min-h-screen bg-white text-zinc-900">
         {children}
       </body>
     </html>

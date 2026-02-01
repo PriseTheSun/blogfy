@@ -178,7 +178,7 @@ export default function Navbar() {
                                                         key={index}
                                                         href={item.link}
                                                         target="_blank"
-                                                        className={`absolute inset-0 p-6 flex flex-col justify-between transition-all duration-500 ease-in-out ${index === currentIndex ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4 pointer-events-none"
+                                                        className={`absolute inset-0 p-6 pr-36 flex flex-col justify-between transition-all duration-500 ease-in-out ${index === currentIndex ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4 pointer-events-none"
                                                             }`}
                                                     >
                                                         <div className="space-y-2">
@@ -189,6 +189,12 @@ export default function Navbar() {
                                                                 {item.title}
                                                             </h4>
                                                         </div>
+
+                                                        {item.image && (
+                                                            <div className="absolute right-6 top-6 w-28 h-20 rounded-lg overflow-hidden">
+                                                                <Image src={item.image} alt={item.title} width={112} height={80} className="object-cover" />
+                                                            </div>
+                                                        )}
 
                                                         <div className="flex items-center justify-between text-[11px] text-easy-gray-primary font-medium">
                                                             <div className="flex items-center gap-1">
