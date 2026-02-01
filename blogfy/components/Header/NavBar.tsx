@@ -12,7 +12,8 @@ export default function Navbar() {
 
     return (
         <nav className="sticky top-0 w-full bg-easy-white border-b border-easy-gray-secondary/20 shadow-sm z-40">
-            <div className="max-w-7xl mx-auto px-4 md:px-6">
+            {/* O 'relative' aqui permite que o menu absoluto se alinhe a este container */}
+            <div className="max-w-7xl mx-auto px-4 md:px-6 relative">
                 <div className="flex justify-between items-center h-20">
 
                     {/* Logo */}
@@ -32,47 +33,75 @@ export default function Navbar() {
                         <Link href="/" className={navLinkStyle}>Home</Link>
 
                         {/* 1. ARTIGOS (Megamenu) */}
-                        <div className="group static h-full flex items-center">
+                        <div className="group h-full flex items-center">
                             <div className={navLinkStyle}>
                                 Artigos <ChevronDown size={14} className="group-hover:rotate-180 transition-transform" />
                             </div>
-                            <div className="absolute top-20 left-0 w-full bg-easy-white border-t border-easy-gray-secondary/20 shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
-                                <div className="max-w-7xl mx-auto p-10 grid grid-cols-12 gap-8">
-                                    <div className="col-span-9 grid grid-cols-3 gap-6">
-                                        {[1, 2, 3].map((col) => (
-                                            <div key={col} className="flex flex-col gap-3">
-                                                <h4 className="font-bold text-easy-black border-b border-easy-red pb-2">Categoria Jurídica {col}</h4>
-                                                <ul className="space-y-2 text-sm text-easy-gray-primary">
-                                                    {[...Array(6)].map((_, i) => (
-                                                        <li key={i}><Link href="#" className="hover:text-easy-red transition-all">Artigo sobre Direito {i + 1}</Link></li>
-                                                    ))}
-                                                    <li><Link href="#" className="font-bold text-easy-red hover:underline">Ver todos</Link></li>
-                                                </ul>
-                                            </div>
-                                        ))}
+
+                            {/* Menu ajustado para a largura do container (inset-x) */}
+                            <div className="absolute top-20 inset-x-4 md:inset-x-6 bg-easy-white border border-easy-gray-secondary/20 shadow-2xl rounded-b-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
+                                <div className="p-12 grid grid-cols-12 gap-4 items-center">
+                                    {/* Bloco de Texto */}
+                                    <div className="col-span-3 pr-10">
+                                        <h3 className="text-[26px] font-bold text-easy-black leading-[1.1] mb-4">
+                                            Navegue nos artigos por categorias
+                                        </h3>
+                                        <p className="text-easy-gray-primary text-sm leading-relaxed mb-6">
+                                            Tudo o que você precisa saber para se manter atualizado no mercado jurídico.
+                                        </p>
+                                        <Link href="/artigos" className="group/link flex items-center gap-2 text-easy-red font-bold text-sm">
+                                            Ver todos os artigos
+                                            <ExternalLink size={14} className="group-hover:translate-x-1 transition-transform" />
+                                        </Link>
                                     </div>
-                                    <div className="col-span-3 bg-easy-gray-secondary/5 p-6 rounded-xl border border-easy-gray-secondary/20">
-                                        <h4 className="font-bold text-sm text-easy-gray-primary uppercase mb-4">Recomendados</h4>
-                                        <div className="h-40 flex items-center justify-center border-2 border-dashed border-easy-gray-secondary rounded-lg text-xs text-easy-gray-primary">
-                                            [Slider Recomendados]
-                                        </div>
+
+                                    {/* Colunas de Links */}
+                                    <div className="col-span-9 grid grid-cols-3 gap-x-12 pt-2">
+                                        <ul className="space-y-4 text-[15px] font-medium text-easy-gray-primary">
+                                            <li><Link href="#" className="hover:text-easy-red transition-colors">Direito Ambiental</Link></li>
+                                            <li><Link href="#" className="hover:text-easy-red transition-colors">Direito Administrativo</Link></li>
+                                            <li><Link href="#" className="hover:text-easy-red transition-colors">Direito Civil</Link></li>
+                                            <li><Link href="#" className="hover:text-easy-red transition-colors">Direito Contitucional</Link></li>
+                                            <li><Link href="#" className="hover:text-easy-red transition-colors">Direito de Família</Link></li>
+                                            <li><Link href="#" className="hover:text-easy-red transition-colors">Direito do Consumidor</Link></li>
+                                            <li><Link href="#" className="hover:text-easy-red transition-colors">Direito Eleitoral</Link></li>
+                                        </ul>
+                                        <ul className="space-y-4 text-[15px] font-medium text-easy-gray-primary">
+                                            <li><Link href="#" className="hover:text-easy-red transition-colors">Direito Empresarial</Link></li>
+                                            <li><Link href="#" className="hover:text-easy-red transition-colors">Direito Imobiliário</Link></li>
+                                            <li><Link href="#" className="hover:text-easy-red transition-colors">Direito Internacional</Link></li>
+                                            <li><Link href="#" className="hover:text-easy-red transition-colors">Direito Médico</Link></li>
+                                            <li><Link href="#" className="hover:text-easy-red transition-colors">Direito Penal</Link></li>
+                                            <li><Link href="#" className="hover:text-easy-red transition-colors">Direito Previdenciário</Link></li>
+                                            <li><Link href="#" className="hover:text-easy-red transition-colors">Processual Civil</Link></li>
+                                        </ul>
+                                        <ul className="space-y-4 text-[15px] font-medium text-easy-gray-primary">
+                                            <li><Link href="#" className="hover:text-easy-red transition-colors">Direito Trabalhista</Link></li>
+                                            <li><Link href="#" className="hover:text-easy-red transition-colors">Direito Tributário</Link></li>
+                                            <li><Link href="#" className="hover:text-easy-red transition-colors">EasyJur</Link></li>
+                                            <li><Link href="#" className="hover:text-easy-red transition-colors">Jurisprudência</Link></li>
+                                            <li><Link href="#" className="hover:text-easy-red transition-colors">Ferramentas e Materiais</Link></li>
+                                            <li><Link href="#" className="hover:text-easy-red transition-colors">Organização e Produtividade</Link></li>
+                                            <li><Link href="#" className="hover:text-easy-red transition-colors">Direito Bancário</Link></li>
+                                            <li><Link href="#" className="hover:text-easy-red transition-colors">Direito Social</Link></li>
+                                        </ul>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        {/* 2. PLANOS (Link Direto - Sem Megamenu) */}
+                        {/* 2. PLANOS */}
                         <Link href="/planos" className={navLinkStyle}>
                             Planos
                         </Link>
 
-                        {/* 3. CONTEÚDOS (Integração RSS) */}
-                        <div className="group static h-full flex items-center">
+                        {/* 3. CONTEÚDOS */}
+                        <div className="group h-full flex items-center">
                             <div className={navLinkStyle}>
                                 Conteúdos <ChevronDown size={14} className="group-hover:rotate-180 transition-transform" />
                             </div>
-                            <div className="absolute top-20 left-0 w-full bg-easy-white border-t border-easy-gray-secondary/20 shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
-                                <div className="max-w-7xl mx-auto p-10 grid grid-cols-12 gap-8">
+                            <div className="absolute top-20 inset-x-4 md:inset-x-6 bg-easy-white border border-easy-gray-secondary/20 shadow-2xl rounded-b-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
+                                <div className="p-10 grid grid-cols-12 gap-8">
                                     <div className="col-span-8">
                                         <h4 className="font-bold text-easy-black mb-4 flex items-center gap-2">
                                             Notícias: Gazeta do Povo <ExternalLink size={14} className="text-easy-red" />
@@ -97,12 +126,12 @@ export default function Navbar() {
                         </div>
 
                         {/* 4. MATERIAIS GRATUITOS */}
-                        <div className="group static h-full flex items-center">
+                        <div className="group h-full flex items-center">
                             <div className={navLinkStyle}>
                                 Materiais <ChevronDown size={14} className="group-hover:rotate-180 transition-transform" />
                             </div>
-                            <div className="absolute top-20 left-0 w-full bg-easy-white border-t border-easy-gray-secondary/20 shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
-                                <div className="max-w-7xl mx-auto p-10 grid grid-cols-6 gap-6">
+                            <div className="absolute top-20 inset-x-4 md:inset-x-6 bg-easy-white border border-easy-gray-secondary/20 shadow-2xl rounded-b-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
+                                <div className="p-10 grid grid-cols-6 gap-6">
                                     {['Cursos', 'Guias Práticos', 'E-books', 'Planilhas', 'Jurisprudências', 'Modelos'].map((cat) => (
                                         <div key={cat}>
                                             <h4 className="font-bold text-sm text-easy-black border-b border-easy-red pb-2 mb-3">{cat}</h4>
@@ -118,13 +147,13 @@ export default function Navbar() {
                             </div>
                         </div>
 
-                        {/* 5. A EASYJUR (Institucional) */}
-                        <div className="group static h-full flex items-center">
+                        {/* 5. A EASYJUR */}
+                        <div className="group h-full flex items-center">
                             <div className={navLinkStyle}>
                                 A EasyJur <ChevronDown size={14} className="group-hover:rotate-180 transition-transform" />
                             </div>
-                            <div className="absolute top-20 left-0 w-full bg-easy-white border-t border-easy-gray-secondary/20 shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
-                                <div className="max-w-7xl mx-auto p-10 grid grid-cols-12 gap-8">
+                            <div className="absolute top-20 inset-x-4 md:inset-x-6 bg-easy-white border border-easy-gray-secondary/20 shadow-2xl rounded-b-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
+                                <div className="p-10 grid grid-cols-12 gap-8">
                                     <div className="col-span-4 flex flex-col gap-2 border-r border-easy-gray-secondary/20 pr-8">
                                         {['Trabalhe Conosco', 'Manifesto EasyJur', 'Fale Conosco', 'Suporte', 'Central de Aprendizagem'].map(link => (
                                             <Link key={link} href="#" className="text-sm font-medium text-easy-gray-primary hover:text-easy-red transition-colors py-1">
