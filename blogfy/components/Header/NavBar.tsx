@@ -78,6 +78,51 @@ export default function Navbar() {
         return () => clearInterval(iv);
     }, [videoSlides.length, videoPaused, videoPlaying]);
 
+    // Depoimentos escritos (slider na coluna "Depoimentos")
+    const writtenTestimonials = [
+        {
+            id: 1,
+            text: 'A EasyJur transformou a forma como gerimos nossos processos. Conteúdos práticos e aplicáveis que geram resultado.',
+            author: 'Dra. Marina Rodrigues',
+            role: 'Diretora Jurídica, Silva & Rodrigues'
+        },
+        {
+            id: 2,
+            text: 'Conteúdos claros, atualizados e com alto valor prático. Economizamos horas de pesquisa diariamente.',
+            author: 'Dr. Paulo Menezes',
+            role: 'Sócio, Menezes & Associados'
+        },
+        {
+            id: 3,
+            text: 'Material objetivo e útil — trouxe ganho imediato ao nosso fluxo de trabalho.',
+            author: 'Ana Paula',
+            role: 'Coordenadora Jurídica, ABC Serviços'
+        },
+        {
+            id: 4,
+            text: 'Os guias e modelos são excepcionais. Recomendo para escritórios que buscam praticidade.',
+            author: 'Dr. Ricardo Almeida',
+            role: 'Advogado Trabalhista'
+        },
+        {
+            id: 5,
+            text: 'A EasyJur é referência em conteúdo para equipes jurídicas que querem ser eficientes e atualizadas.',
+            author: 'Maria Fernandes',
+            role: 'Gerente Jurídico'
+        }
+    ];
+
+    const [testimonialIndex, setTestimonialIndex] = useState(0);
+    const [testimonialPaused, setTestimonialPaused] = useState(false);
+
+    useEffect(() => {
+        if (writtenTestimonials.length === 0 || testimonialPaused) return;
+        const tIv = setInterval(() => {
+            setTestimonialIndex((prev) => (prev + 1) % writtenTestimonials.length);
+        }, 7000);
+        return () => clearInterval(tIv);
+    }, [writtenTestimonials.length, testimonialPaused]);
+
 
 
     useEffect(() => {
@@ -466,7 +511,7 @@ export default function Navbar() {
                                                     </div>
                                                 ))}
 
-                                                <div className="absolute right-3 bottom-[45px] flex items-center gap-2 z-20">
+                                                <div className="absolute right-3 bottom-3 flex items-center gap-2 z-20">
                                                     <button
                                                         onClick={() => {
                                                             if (videoPlaying !== null) {
@@ -502,8 +547,39 @@ export default function Navbar() {
                                     </div>
                                     <div className="col-span-4">
                                         <h4 className="font-bold text-sm mb-4 text-easy-gray-primary">Depoimentos</h4>
-                                        <div className="p-6 bg-easy-white rounded-xl border border-easy-red/20 italic text-sm text-easy-black shadow-sm">
-                                            "A EasyJur mudou nossa rotina jurídica..."
+
+                                        <div
+                                            className="relative aspect-video p-4 bg-easy-white rounded-xl border border-easy-gray-secondary/20 text-sm text-easy-gray-primary shadow-sm flex flex-col"
+                                            onMouseEnter={() => setTestimonialPaused(true)}
+                                            onMouseLeave={() => setTestimonialPaused(false)}
+                                        >
+                                            <div className="relative flex-1 overflow-hidden">
+                                                {writtenTestimonials.map((t, i) => (
+                                                    <div
+                                                        key={t.id}
+                                                        className={`absolute inset-0 transition-all duration-500 ease-in-out p-4 flex flex-col justify-center ${i === testimonialIndex ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2 pointer-events-none'}`}
+                                                        aria-hidden={i === testimonialIndex ? 'false' : 'true'}
+                                                    >
+                                                        <blockquote className="italic text-[14px] leading-snug">“{t.text}”</blockquote>
+                                                        <div className="mt-3 text-xs text-easy-gray-primary">
+                                                            <div className="font-semibold text-easy-black">{t.author}</div>
+                                                            <div>{t.role}</div>
+                                                        </div>
+                                                    </div>
+                                                ))}
+                                            </div>
+
+                                            {/* Dots (bottom) */}
+                                            <div className="mt-3 flex items-center justify-center gap-2">
+                                                {writtenTestimonials.map((_, i) => (
+                                                    <button
+                                                        key={i}
+                                                        onClick={() => setTestimonialIndex(i)}
+                                                        className={`h-1.5 transition-all rounded-full ${i === testimonialIndex ? 'w-6 bg-easy-red' : 'w-2 bg-easy-gray-secondary/30'}`}
+                                                        aria-label={`Ir para depoimento ${i + 1}`}
+                                                    />
+                                                ))}
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
