@@ -575,6 +575,11 @@ export default function Navbar() {
                         </div>
                     </div>
 
+                    <div className="hidden lg:flex items-center">
+                        <button className="bg-easy-red text-white px-6 py-2 rounded-full text-sm font-bold hover:bg-opacity-90 hover:shadow-lg hover:scale-105 transition-all duration-300">
+                            Teste Grátis
+                        </button>
+                    </div>
 
                     <button className="lg:hidden p-2 text-easy-black" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} aria-label="Abrir Menu">
                         {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
