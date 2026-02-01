@@ -1,4 +1,4 @@
-import TopBar from './TopBar'; // mude para minúsculo
+import TopBar from '../TopBar';
 import Navbar from './NavBar'; // mude para minúsculo
 
 export default function Header() {
