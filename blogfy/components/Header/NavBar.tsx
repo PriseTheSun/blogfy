@@ -12,7 +12,7 @@ export default function Navbar() {
     const [loading, setLoading] = useState(true);
     const [isPaused, setIsPaused] = useState(false);
     const [searchQuery, setSearchQuery] = useState('');
-    const [isSticky, setIsSticky] = useState(false);
+
     const navLinkStyle = "flex items-center gap-1 font-semibold text-easy-black hover:text-easy-red transition-colors py-7 cursor-pointer text-sm";
 
     const categoryIcon = (cat: string) => {
@@ -140,19 +140,11 @@ export default function Navbar() {
     }, [news, currentIndex]);
 
 
-    useEffect(() => {
-        const onScroll = () => {
-            setIsSticky(window.scrollY > 40);
-        };
-        // initialize
-        onScroll();
-        window.addEventListener('scroll', onScroll, { passive: true });
-        return () => window.removeEventListener('scroll', onScroll);
-    }, []);
+
 
     return (
         <>
-            <nav className={`transition-all duration-200 ${isSticky ? 'fixed top-0 left-0 right-0 w-full z-50 bg-easy-white/95 shadow-md border-b border-easy-gray-secondary/10' : 'sticky top-0 w-full z-40 bg-easy-white border-b border-easy-gray-secondary/20 shadow-sm'}`}>
+            <nav className="relative w-full bg-easy-white border-b border-easy-gray-secondary/20 shadow-sm">
 
                 <div className="max-w-7xl mx-auto px-4 md:px-6 relative">
                     <div className="flex justify-between items-center h-20">
@@ -613,7 +605,7 @@ export default function Navbar() {
                     </div>
                 </div>
             </nav>
-            {isSticky && <div aria-hidden className="h-20" />}
+
             <Sidebar isOpen={isMobileMenuOpen} onClose={() => setIsMobileMenuOpen(false)} />
         </>
     );
